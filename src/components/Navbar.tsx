@@ -18,9 +18,14 @@ export default async function Navbar() {
   const session = await getAuthSession();
 
   return (
-    <nav className="flex justify-between items-center py-2 px-4 sm:px-16 border-b">
+    <nav className="flex justify-between items-center py-2 px-4 sm:px-16 border-b bg-white z-50">
       <a href="/">
-        <Image width={180} height={180} src="/securenest_bg.png" alt="Logo" />
+        <Image
+          width="0"
+          height="0"
+          sizes="100%"
+          className="w-[180px] h-auto" 
+          src="/securenest_bg.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
         <a href="/about">

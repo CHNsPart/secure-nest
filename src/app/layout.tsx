@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={cn("w-screen", inter.className)}>
+      <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
         <Toaster />
