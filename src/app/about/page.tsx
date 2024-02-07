@@ -1,7 +1,10 @@
+import FAQ from '@/components/FAQ'
+import Service from '@/components/Service'
 import Image from 'next/image'
 import React from 'react'
 
 export default function About() {
+
   return (
     <main className="h-full flex flex-col gap-4 justify-center items-start">
 
@@ -67,6 +70,12 @@ export default function About() {
         </div>
       </section>
 
+      <Service/>
+
+      <FAQ/>
+
     </main>
   )
 }
+
+
