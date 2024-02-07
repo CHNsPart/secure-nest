@@ -37,7 +37,7 @@ const getCredentials = () => {
 
 export const authOptions: NextAuthOptions = {
   providers: [GoogleProvider(getCredentials())],
-  
+  secret:"googlesecret",
   callbacks: {
     session: ({ session, user }) => {
       session.user = user as User & DefaultSession["user"];
