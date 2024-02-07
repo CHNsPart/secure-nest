@@ -10,15 +10,30 @@ declare module "next-auth" {
   }
 }
 
-const getCredentials = () => {
-  const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
+// const getCredentials = () => {
+//   const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } = process.env;
 
-  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
-    throw new Error("Missing Google credentials");
+//   if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET) {
+//     throw new Error("Missing Google credentials");
+//   }
+
+//   return { clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET };
+// };
+
+const getCredentials = () => {
+  const { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, NEXTAUTH_URL } = process.env;
+
+  if (!GOOGLE_CLIENT_ID || !GOOGLE_CLIENT_SECRET || !NEXTAUTH_URL) {
+    throw new Error("Missing Google or NextAuth credentials");
   }
 
-  return { clientId: GOOGLE_CLIENT_ID, clientSecret: GOOGLE_CLIENT_SECRET };
+  return {
+    clientId: GOOGLE_CLIENT_ID,
+    clientSecret: GOOGLE_CLIENT_SECRET,
+    callbackUrl: `${NEXTAUTH_URL}/api/auth/callback/google`,
+  };
 };
+
 
 export const authOptions: NextAuthOptions = {
   providers: [GoogleProvider(getCredentials())],
