@@ -1,5 +1,4 @@
 import { ManageUserSubscriptionButton } from "@/components/manage-user-subscription-button";
-import SignInBtn from "@/components/sign-in-btn";
 import {
   Card,
   CardDescription,
@@ -12,6 +11,13 @@ import { getAuthSession } from "@/lib/auth";
 import { getUserSubscriptionPlan } from "@/lib/subscription";
 import { redirect } from "next/navigation";
 
+import dynamic from 'next/dynamic';
+
+const SignInBtn = dynamic(() => import('@/components/sign-in-btn'), {
+  loading: () => <>Loading...</>,
+});
+
+
 export default async function Billing() {
   const session = await getAuthSession();
   const subscriptionPlan = await getUserSubscriptionPlan();
@@ -21,10 +27,10 @@ export default async function Billing() {
   return (
     <div className="min-h-[calc(100vh-57px)] py-8 px-4 md:px-16 lg:px-24">
       <Card className="p-6 mb-2">
-        <p className="text-lg font-semibold leading-none">
+        <div className="text-lg font-semibold leading-none">
           {subscriptionPlan.name}
-        </p>
-        <p className="text-sm text-muted-foreground">
+        </div>
+        <div className="text-sm text-muted-foreground">
           {!subscriptionPlan.isSubscribed
             ? "You are not subscribed to any plan."
             : subscriptionPlan.isCanceled
@@ -33,7 +39,7 @@ export default async function Billing() {
           {subscriptionPlan?.stripeCurrentPeriodEnd
             ? subscriptionPlan.stripeCurrentPeriodEnd.toLocaleDateString()
             : null}
-        </p>
+        </div>
       </Card>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
         {storeSubscriptionPlans.map((plan) => (
@@ -41,8 +47,10 @@ export default async function Billing() {
             <CardHeader>
               <CardTitle>{plan.name}</CardTitle>
               <CardDescription>
-                {plan.description}
-                <div className="flex justify-center items-center text-gray-600 mt-4">
+                <span>
+                  {plan.description}
+                </span>
+                {/* <div className="flex justify-center items-center text-gray-600 mt-4">
                   <span className="w-4 h-4 mr-2 inline-flex items-center justify-center bg-gray-400 text-white rounded-full flex-shrink-0">
                     <svg fill="none" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" className="w-3 h-3" viewBox="0 0 24 24">
                       <path d="M20 6L9 17l-5-5"></path>
@@ -51,7 +59,7 @@ export default async function Billing() {
                   <span>
                     Vexillologist pitchfork
                   </span>
-                </div>  
+                </div>   */}
               </CardDescription>
             </CardHeader>
             <CardFooter className="flex items-end">
@@ -74,3 +82,6 @@ export default async function Billing() {
     </div>
   );
 }
+
+
+

@@ -24,6 +24,8 @@ model Account {
   scope             String?
   id_token          String?
   session_state     String?
+  refresh_expires_in Int?
+  not_before_policy  Int?
 
   user User @relation(fields: [userId], references: [id], onDelete: Cascade)
 

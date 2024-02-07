@@ -22,6 +22,7 @@ const getCredentials = () => {
 
 export const authOptions: NextAuthOptions = {
   providers: [GoogleProvider(getCredentials())],
+  
   callbacks: {
     session: ({ session, user }) => {
       session.user = user as User & DefaultSession["user"];
@@ -31,6 +32,7 @@ export const authOptions: NextAuthOptions = {
   },
   adapter: PrismaAdapter(db),
 };
+
 
 export const getAuthSession = async () => {
   return getServerSession(authOptions);

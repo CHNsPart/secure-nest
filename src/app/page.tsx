@@ -23,10 +23,12 @@ export default function Home() {
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
-            <Image className="w-full h-auto object-cover object-center rounded"
-                width="0"
-                height="0"
-                sizes="100vw"
+            <Image 
+              priority
+              className="w-full h-auto object-cover object-center rounded"
+              width="0"
+              height="0"
+              sizes="100vw"
               alt="hero" src="/pic1.jpg"
             />
           </div>
@@ -44,27 +46,27 @@ export default function Home() {
               </span>
             </p>
           </div>
-          <div className="flex flex-wrap md:-m-2 -m-1">
+          <div className="flex w-full flex-wrap md:-m-2 -m-1">
             <div className="flex flex-wrap w-1/2">
               <div className="md:p-2 p-1 w-1/2">
-                <Image height={100} width={100} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic1.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic1.jpg" />
               </div>
               <div className="md:p-2 p-1 w-1/2">
-                <Image height={100} width={100} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic4.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic4.jpg" />
               </div>
               <div className="md:p-2 p-1 w-full">
-                <Image height={100} width={100} alt="gallery" className="w-full h-full object-cover object-center block" src="/dpic3.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full h-full object-cover object-center block" src="/dpic3.jpg" />
               </div>
             </div>
             <div className="flex flex-wrap w-1/2">
               <div className="md:p-2 p-1 w-full">
-                <Image height={100} width={100} alt="gallery" className="w-full h-full object-cover object-center block" src="/dpic2.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full h-full object-cover object-center block" src="/dpic2.jpg" />
               </div>
               <div className="md:p-2 p-1 w-1/2">
-                <Image height={100} width={100} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic5.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic5.jpg" />
               </div>
               <div className="md:p-2 p-1 w-1/2">
-                <Image height={100} width={100} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic6.jpg" />
+                <Image quality={100} height={500} width={1080} alt="gallery" className="w-full object-cover h-full object-center block" src="/dpic6.jpg" />
               </div>
             </div>
           </div>

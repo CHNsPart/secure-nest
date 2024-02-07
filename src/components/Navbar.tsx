@@ -36,8 +36,8 @@ export default async function Navbar() {
             <DropdownMenuTrigger>
               <Avatar>
                 <AvatarImage
-                  src={session.user.image || ""}
-                  alt={session.user.name || ""}
+                  src={session.user.image! ?? ""}
+                  alt={session.user.name! ?? ""}
                 />
                 <AvatarFallback>
                   {session.user.name
