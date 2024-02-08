@@ -31,7 +31,7 @@ export default async function Navbar() {
         <a href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
-        {/* {session ? (
+        {session ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
@@ -64,7 +64,7 @@ export default async function Navbar() {
           </DropdownMenu>
         ) : (
           <SignInBtn />
-        )} */}
+        )}
       </div>
     </nav>
   );
