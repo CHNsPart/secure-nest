@@ -1,6 +1,4 @@
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { getAuthSession } from "@/lib/auth";
-import SignInBtn from "./sign-in-btn";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -9,13 +7,19 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+import {
+  getKindeServerSession,
+} from "@kinde-oss/kinde-auth-nextjs/server";
 import SignOutBtn from "./sign-out-btn";
 import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
+import SignInBtn from "./sign-in-btn";
 
 export default async function Navbar() {
-  const session = await getAuthSession();
+  const { isAuthenticated, getUser } = getKindeServerSession();
+  const user: any = await getUser();
+  const auth: boolean = await isAuthenticated();
 
   return (
     <nav className="flex justify-between items-center py-2 px-4 sm:px-16 border-b bg-white z-50">
@@ -31,25 +35,22 @@ export default async function Navbar() {
         <a href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
-        {session ? (
+        {auth ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
               <Avatar>
                 <AvatarImage
-                  src={session.user.image! ?? ""}
-                  alt={session.user.name! ?? ""}
+                  src={!user.picture === null ? "" : user.picture}
+                  alt={!user.family_name  === null ? "" : user.family_name}
                 />
                 <AvatarFallback>
-                  {session.user.name
-                    ?.split(" ")
-                    .map((word) => word[0].toUpperCase())
-                    .join("")}
+                  {user.family_name.charAt(0).toUpperCase()+user.given_name.charAt(0).toUpperCase()}
                 </AvatarFallback>
               </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent align="end" className="w-56">
               <DropdownMenuLabel>
-                <span className="font-semibold">{session.user.name}</span>
+                <span className="font-semibold">{user.given_name.toUpperCase()+" "+user.family_name.toUpperCase()}</span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
               <Link href="/billing">
@@ -63,7 +64,7 @@ export default async function Navbar() {
             </DropdownMenuContent>
           </DropdownMenu>
         ) : (
-          <SignInBtn />
+          <SignInBtn/>
         )}
       </div>
     </nav>

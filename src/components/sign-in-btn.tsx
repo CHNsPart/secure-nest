@@ -1,8 +1,14 @@
 "use client";
 
-import { signIn } from "next-auth/react";
-import { Button } from "@/components/ui/button";
+import { LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import { Button } from "./ui/button";
 
 export default function SignInBtn() {
-  return <Button className="bg-green-600 hover:bg-green-700" onClick={() => signIn()}>Sign In</Button>;
+  return (
+    <LoginLink>
+      <Button className="bg-green-600 hover:bg-green-700">
+        Sign in
+      </Button>
+    </LoginLink>
+  )
 }

@@ -1,5 +1,9 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import {
+  getKindeServerSession,
+  RegisterLink
+} from "@kinde-oss/kinde-auth-nextjs/server";
 
 export default function Home() {
   return (
@@ -18,8 +22,10 @@ export default function Home() {
               </span>
             </p>
             <div className="flex justify-center">
-              <Button className="text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded">Plans</Button>
-              <Button className="ml-4 text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded">Products</Button>
+              <RegisterLink>
+                <Button className="text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded">Register</Button>
+              </RegisterLink>
+              <Button className="ml-4 text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded">Plans</Button>
             </div>
           </div>
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
