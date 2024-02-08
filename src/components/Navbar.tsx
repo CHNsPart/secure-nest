@@ -15,11 +15,25 @@ import Link from "next/link";
 import { Button } from "./ui/button";
 import Image from "next/image";
 import SignInBtn from "./sign-in-btn";
+import { insertUser } from "@/lib/db";
+
+
 
 export default async function Navbar() {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const user: any = await getUser();
   const auth: boolean = await isAuthenticated();
+  console.log(user)
+
+  if (auth) {
+    // Insert the user into the local database
+    try {
+      await insertUser(user);
+    } catch (error) {
+      console.error('Error inserting user into the database:', error);
+      // Handle the error as needed
+    }
+  }
 
   return (
     <nav className="flex justify-between items-center py-2 px-4 sm:px-16 border-b bg-white z-50">
