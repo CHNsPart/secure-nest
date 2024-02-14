@@ -10,37 +10,70 @@ import Plans from "@/components/Plans";
 export default function Home() {
   return (
     <main className="h-full w-full flex flex-col gap-4 justify-center items-start">
-      
-      <ImageSlider/>
 
       {/* Hero Section */}
       <section className="text-gray-600 container body-font">
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
-            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Guarding Your Peace Of Mind,
-              <br className="hidden lg:inline-block"/>{"Securing Your Home"}
+        <div className="container w-full mx-auto flex px-5 py-10 md:py-24 md:flex-col flex-col items-center">
+          <div className="lg:flex-grow flex flex-col md:items-center md:text-center mb-16 items-center text-center">
+            <h1 className="title-font sm:text-4xl text-3xl mb-4 font-medium text-gray-900">Build your smart home with a Local<br/>Canadian security provider
             </h1>
-            <p className="mb-8 leading-relaxed">Explore our Smart Home and Security Plans, benefit from special offers, and discover how SecureNest can elevate your peace of mind. Your safety begins here. 
+            <p className="mb-8 w-full md:w-1/2 leading-relaxed">Choose from our selection of home security and automation plans. Add or remove devices to 
               {" "}
               <span className="text-green-600">
-                Save over $1,500 on premium security products! Plans start as low as $14.99 /mo.  
+                {"customize your chosen plan to your family’s unique needs."}  
               </span>
             </p>
             <div className="flex justify-center">
               <RegisterLink>
                 <Button className="text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded">Register</Button>
               </RegisterLink>
-              <Button className="ml-4 text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded">Plans</Button>
+              <a href="#plans">
+                <Button className="ml-4 text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded">Plans</Button>
+              </a>
             </div>
           </div>
-          <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6">
+          <div className="w-full flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
             <Image 
               priority
-              className="w-full h-auto object-cover object-center rounded"
+              className="w-full md:w-1/3 h-1/3 object-cover object-center rounded"
               width="0"
               height="0"
-              sizes="100vw"
-              alt="hero" src="/pic1.jpg"
+              sizes="50vw"
+              alt="hero" src="/hero1.png"
+            />
+            <div className="w-full flex gap-2 justify-center flex-auto flex-wrap">
+              <Image 
+                priority
+                className="w-full h-fit object-cover object-center rounded"
+                width="0"
+                height="0"
+                sizes="50vw"
+                alt="hero" src="/hero2.png"
+              />
+              <Image 
+                priority
+                className="w-full h-fit object-cover object-center rounded"
+                width="0"
+                height="0"
+                sizes="50vw"
+                alt="hero" src="/hero3.png"
+              />
+              <Image 
+                priority
+                className="w-full h-1/2 object-cover object-center rounded"
+                width="0"
+                height="0"
+                sizes="50vw"
+                alt="hero" src="/hero4.png"
+              />
+            </div>
+            <Image 
+              priority
+              className="w-full md:w-1/3 h-auto object-cover object-center rounded"
+              width="0"
+              height="0"
+              sizes="50vw"
+              alt="hero" src="/hero5.jpeg"
             />
           </div>
         </div>

@@ -11,9 +11,10 @@ interface PlanProps {
   buttonColor: string;
   borderColor?: string;
   popular?: boolean;
+  link: string
 }
 
-const Plan: React.FC<PlanProps> = ({ planName, features, price, buttonText, buttonColor, borderColor, popular }) => {
+const Plan: React.FC<PlanProps> = ({ planName, features, price, buttonText, buttonColor, borderColor, popular, link }) => {
   const color = `border-${borderColor}-500`
   return (
     <div className={`flex flex-col relative rounded-lg border-2 ${color} p-4 pt-6`}>
@@ -46,7 +47,7 @@ const Plan: React.FC<PlanProps> = ({ planName, features, price, buttonText, butt
           <span className="text-gray-500">CAD/month</span>
         </div>
 
-        <a href="#" className={`block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-white outline-none bg-${buttonColor}-500 ring-green-300 transition duration-100 hover:bg-green-600 focus-visible:ring active:text-green-950 md:text-base`}>
+        <a href={link} className={`block rounded-lg bg-gray-200 px-8 py-3 text-center text-sm font-semibold text-white outline-none bg-${buttonColor}-500 ring-green-300 transition duration-100 hover:bg-green-600 focus-visible:ring active:text-green-950 md:text-base`}>
           {buttonText}
         </a>
       </div>

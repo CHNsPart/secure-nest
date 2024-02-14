@@ -7,7 +7,7 @@ const priceData= [
     {
       "planName": "Basic Plan",
       "features": {
-        "description": "For individuals and organizations who want to try our system",
+        "description": "Includes Some of our Products",
         "items": [
           "Wifi Camera",
           "Door and Window Alarm",
@@ -21,66 +21,94 @@ const priceData= [
           "Doorbell Camera"
         ]
       },
-      "price": "100",
+      "price": "14.99",
       "buttonText": "Buy Now",
       "buttonColor": "green",
+      "link": "/plans/basic"
     },
     {
-      "planName": "Team Plan",
+      "planName": "Silver Plan",
       "features": {
-        "description": "Advanced features for individuals and organizations",
+        "description": "Includes Most of our Products",
         "items": [
-          "Unlimited file storage",
-          "10 GB bandwidth per month",
-          "10,000 tasks per month",
-          "Email support",
-          "100 Webhooks"
+          "Cell phone signal booster",
+          "Doorlock",
+          "Wifi Camera",
+          "Door and Window Alarm",
+          "Echo Shaw 5",
+          "Smart garage door opener",
+          "Glass Break Sensor",
+          "Google nest thermostat",
+          "Motion sensor",
+          "Smart light bulb",
+          "TP-Link indoor plug",
+          "TP-Link Outdoor plug",
+          "Doorbell Camera"
         ]
       },
-      "price": "19",
+      "price": "29.99",
       "buttonText": "Buy Now",
       "buttonColor": "green",
       "borderColor": "green",
-      "popular": true
+      "popular": true,
+      "link": "/plans/silver",
     },
     {
-      "planName": "Enterprise Plan",
+      "planName": "Gold Plan",
       "features": {
-        "description": "Maximum performance for organizations",
+        "description": "Includes All of our Products",
         "items": [
-          "Unlimited file storage",
-          "Unlimited bandwidth per month",
-          "1,000,000 tasks per month",
-          "Email and phone support",
-          "Unlimited Webhooks"
+          "Cell phone signal booster",
+          "Doorlock",
+          "Wifi Camera",
+          "Door and Window Alarm",
+          "Echo Shaw 5",
+          "Smart garage door opener",
+          "Glass Break Sensor",
+          "Google nest thermostat",
+          "Motion sensor",
+          "Smart light bulb",
+          "TP-Link indoor plug",
+          "TP-Link Outdoor plug",
+          "Doorbell Camera"
         ]
       },
-      "price": "49",
+      "price": "49.99",
       "buttonText": "Buy Now",
       "buttonColor": "green",
+      "link": "/plans/gold"
     },
     {
-        "planName": "Enterprise Plan",
+        "planName": "Off-City Plan",
         "features": {
-          "description": "Maximum performance for organizations",
+          "description": "For Outer City Desntinations",
           "items": [
-            "Unlimited file storage",
-            "Unlimited bandwidth per month",
-            "1,000,000 tasks per month",
-            "Email and phone support",
-            "Unlimited Webhooks"
+            "Cell phone signal booster",
+            "Doorlock",
+            "Wifi Camera",
+            "Door and Window Alarm",
+            "Echo Shaw 5",
+            "Smart garage door opener",
+            "Glass Break Sensor",
+            "Google nest thermostat",
+            "Motion sensor",
+            "Smart light bulb",
+            "TP-Link indoor plug",
+            "TP-Link Outdoor plug",
+            "Doorbell Camera"
           ]
         },
-        "price": "49",
+        "price": "34.99",
         "buttonText": "Buy Now",
         "buttonColor": "green",
+        "link": "/plans/offcity"
       }
   ]
   
 
 const Plans: React.FC = () => {
   return (
-    <div className="bg-white py-6 sm:py-8 lg:py-12 w-full">
+    <div id='plans' className="bg-white py-6 sm:py-8 lg:py-12 w-full">
         <div className="mx-auto max-w-screen-xl px-4 md:px-8">
             <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl xl:mb-12">Our Plans for You</h2>
             <div className="mb-6 grid gap-6 sm:grid-cols-2 md:mb-8 lg:grid-cols-4 lg:gap-8">
@@ -94,6 +122,7 @@ const Plans: React.FC = () => {
                     buttonColor={plan.buttonColor}
                     borderColor={plan.borderColor}
                     popular={plan.popular}
+                    link={plan.link}
                 />
             ))}
             </div>
