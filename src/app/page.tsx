@@ -4,10 +4,15 @@ import {
   getKindeServerSession,
   RegisterLink
 } from "@kinde-oss/kinde-auth-nextjs/server";
+import ImageSlider from "@/components/ImageSlider";
+import Plans from "@/components/Plans";
 
 export default function Home() {
   return (
     <main className="h-full w-full flex flex-col gap-4 justify-center items-start">
+      
+      <ImageSlider/>
+
       {/* Hero Section */}
       <section className="text-gray-600 container body-font">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
@@ -40,8 +45,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      <Plans/>
       {/*  Duty Section */}
-      <section className="text-gray-600 body-font container">
+      {/* <section className="text-gray-600 body-font container">
         <div className="px-5 py-24 mx-auto flex flex-wrap">
           <div className="flex w-full mb-20 flex-wrap">
             <h1 className="sm:text-3xl text-2xl font-medium title-font text-gray-900 lg:w-1/3 lg:mb-0 mb-4">Free Installation & Delivery</h1>
@@ -77,7 +84,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
     </main>
   );
 }
