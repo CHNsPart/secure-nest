@@ -23,7 +23,7 @@ export default async function Navbar() {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const user: any = await getUser();
   const auth: boolean = await isAuthenticated();
-  console.log(user)
+  // console.log(user)
 
   if (auth) {
     // Insert the user into the local database
@@ -42,6 +42,7 @@ export default async function Navbar() {
           width="0"
           height="0"
           sizes="100%"
+          priority
           className="w-[180px] h-auto" 
           src="/securenest_bg.png" alt="Logo" />
       </a>

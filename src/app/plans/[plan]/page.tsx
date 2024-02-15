@@ -4,7 +4,8 @@
 import { useParams } from 'next/navigation';
 import React from 'react';
 
-const Page = () => {
+export default function Page() {
+  
   const { plan } = useParams();
   const planName = plan;
 
@@ -14,5 +15,3 @@ const Page = () => {
     </div>
   );
 };
-
-export default Page;
