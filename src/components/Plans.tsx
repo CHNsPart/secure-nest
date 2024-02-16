@@ -3,8 +3,9 @@
 import React from 'react';
 import Plan from './Plan';
 
-const priceData= [
+export const priceData= [
     {
+      "id": "basic",
       "planName": "Basic Plan",
       "features": {
         "description": "Includes Some of our Products",
@@ -27,6 +28,7 @@ const priceData= [
       "link": "/plans/basic"
     },
     {
+      "id": "silver",
       "planName": "Silver Plan",
       "features": {
         "description": "Includes Most of our Products",
@@ -54,6 +56,7 @@ const priceData= [
       "link": "/plans/silver",
     },
     {
+      "id": "gold",
       "planName": "Gold Plan",
       "features": {
         "description": "Includes All of our Products",
@@ -79,31 +82,32 @@ const priceData= [
       "link": "/plans/gold"
     },
     {
-        "planName": "Off-City Plan",
-        "features": {
-          "description": "For Outer City Desntinations",
-          "items": [
-            "Cell phone signal booster",
-            "Doorlock",
-            "Wifi Camera",
-            "Door and Window Alarm",
-            "Echo Shaw 5",
-            "Smart garage door opener",
-            "Glass Break Sensor",
-            "Google nest thermostat",
-            "Motion sensor",
-            "Smart light bulb",
-            "TP-Link indoor plug",
-            "TP-Link Outdoor plug",
-            "Doorbell Camera"
-          ]
-        },
-        "price": "34.99",
-        "buttonText": "Buy Now",
-        "buttonColor": "green",
-        "link": "/plans/offcity"
-      }
-  ]
+      "id": "offcity",
+      "planName": "Off-City Plan",
+      "features": {
+        "description": "For Outer City Desntinations",
+        "items": [
+          "Cell phone signal booster",
+          "Doorlock",
+          "Wifi Camera",
+          "Door and Window Alarm",
+          "Echo Shaw 5",
+          "Smart garage door opener",
+          "Glass Break Sensor",
+          "Google nest thermostat",
+          "Motion sensor",
+          "Smart light bulb",
+          "TP-Link indoor plug",
+          "TP-Link Outdoor plug",
+          "Doorbell Camera"
+        ]
+      },
+      "price": "34.99",
+      "buttonText": "Buy Now",
+      "buttonColor": "green",
+      "link": "/plans/offcity"
+    }
+]
   
 
 const Plans: React.FC = () => {

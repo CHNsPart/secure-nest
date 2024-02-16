@@ -6,6 +6,8 @@ import {
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import ImageSlider from "@/components/ImageSlider";
 import Plans from "@/components/Plans";
+import FeaturesSection from "@/components/FeatureSection";
+import TestimonialSection from "@/components/TestimonialSection";
 
 export default function Home() {
   return (
@@ -32,7 +34,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="w-full flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
+          <div className="w-2/3 flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
             <Image 
               priority
               className="w-full md:w-1/3 h-1/3 object-cover object-center rounded"
@@ -79,6 +81,7 @@ export default function Home() {
         </div>
       </section>
 
+      <FeaturesSection/>
       <Plans/>
       {/*  Duty Section */}
       {/* <section className="text-gray-600 body-font container">
@@ -118,6 +121,29 @@ export default function Home() {
           </div>
         </div>
       </section> */}
+
+      <div className="w-full bg-gray-100 py-16">
+        <div className="container w-full flex flex-col md:flex-row items-center gap-5">
+          <Image
+              width="500"
+              height="500"
+              sizes="100%"
+              priority
+              className="w-full object-contain h-16" 
+              src="/securenest_bg.png" alt="Logo"
+            />
+            <p className="w-fit">
+              SecureNest is a leading local Canadian home security company serving the Greater Toronto Area (GTA) and beyond. With a commitment to innovation and personalized service, SecureNest offers state-of-the-art security technology, including smart home integration, Self-monitoring, HD video surveillance, and smart sensors. Their customized security solutions cater to the unique needs of each client, ensuring peace of mind and protection for families and homes. SecureNest is deeply invested in community engagement, actively participating in outreach programs and partnerships to make neighbourhoods safer. With SecureNest, homeowners can trust in a reliable and community-centric approach to home security.
+            </p>
+        </div>
+      </div>
+
+      <TestimonialSection/>
     </main>
   );
 }
+
+
+
+
+

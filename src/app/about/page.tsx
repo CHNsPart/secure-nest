@@ -32,7 +32,7 @@ export default function About() {
           <div className="flex flex-wrap sm:-m-4 -mx-4 -mb-10 -mt-4">
             <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
               <div className="rounded-lg h-64 overflow-hidden">
-                <Image height={100} width={100} alt="content" className="object-cover object-center h-full w-full" src="/dpic1.jpg" />
+                <Image height={500} width={500} alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1491895200222-0fc4a4c35e18?q=80&w=1374&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{"The Heart of SecureNest's Innovation"}</h2>
               <p className="text-base leading-relaxed mt-2">{"At the core of SecureNest's offerings lies cutting-edge technology that sets us apart in the home security landscape. Our systems are equipped with the latest advancements, from artificial intelligence-powered surveillance to smart home automation. We leverage technology to create a comprehensive security ecosystem that adapts to your needs and provides robust protection."}</p>
@@ -44,7 +44,7 @@ export default function About() {
             </div>
             <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
               <div className="rounded-lg h-64 overflow-hidden">
-                <Image height={100} width={100} alt="content" className="object-cover object-center h-full w-full" src="/dpic1.jpg" />
+                <Image height={500} width={500} alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1563920443079-783e5c786b83?q=80&w=1174&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{"Elevate Security, and Your Peace of Mind"}</h2>
               <p className="text-base leading-relaxed mt-2">{"Choose SecureNest as your home security partner and experience a level of protection that exceeds expectations. With a perfect blend of cutting-edge technology, personalized solutions, and unwavering customer support, we're here to elevate your home security to new heights. SecureNest – where innovation meets peace of mind, safeguarding your nest with excellence."}</p>
@@ -56,7 +56,7 @@ export default function About() {
             </div>
             <div className="p-4 md:w-1/3 sm:mb-0 mb-6">
               <div className="rounded-lg h-64 overflow-hidden">
-                <Image height={100} width={100} alt="content" className="object-cover object-center h-full w-full" src="/dpic1.jpg" />
+                <Image height={500} width={500} alt="content" className="object-cover object-center h-full w-full" src="https://images.unsplash.com/photo-1627704442358-61c8e05c7bf4?q=80&w=1138&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" />
               </div>
               <h2 className="text-xl font-medium title-font text-gray-900 mt-5">{"Elevating Home Security to New Heights"}</h2>
               <p className="text-base leading-relaxed mt-2">{"SecureNest, where your home's safety is our paramount concern. At SecureNest, we believe in setting a new standard for home security – one that goes beyond traditional measures and embraces innovation to create a fortress of protection for you and your family."}</p>
