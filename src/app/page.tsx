@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import {
-  getKindeServerSession,
   RegisterLink
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import ImageSlider from "@/components/ImageSlider";

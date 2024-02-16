@@ -68,9 +68,9 @@ export default async function Navbar() {
                 <span className="font-semibold">{user.given_name.toUpperCase()+" "+user.family_name.toUpperCase()}</span>
               </DropdownMenuLabel>
               <DropdownMenuSeparator />
-              <Link href="/billing">
+              <Link href="/profile">
                 <DropdownMenuItem className="cursor-pointer">
-                  Billing
+                  Profile
                 </DropdownMenuItem>
               </Link>
               <DropdownMenuItem>
