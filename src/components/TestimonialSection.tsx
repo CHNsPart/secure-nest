@@ -167,11 +167,23 @@ const TestimonialSection: React.FC = () => {
     }
   };
 
+  const handleScrollLeft = () => {
+    if (testimonialContainerRef.current) {
+      testimonialContainerRef.current.scrollBy({ left: -200, behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="relative container w-full bg-white py-6 sm:py-8 lg:py-16">
       <div className="mx-auto max-w-screen-xl">
         <h2 className="mb-8 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl">What others say about us</h2>
 
+        <button
+          onClick={handleScrollLeft}
+          className="absolute z-50 left-4 -bottom-4 transform -translate-y-1/2 bg-white text-green-500 p-2 rounded-full focus:outline-none"
+        >
+          <HiArrowCircleRight className='-rotate-180' size={50} />
+        </button>
         <div
           ref={testimonialContainerRef}
           className="flex gap-4 md:gap-8 overflow-x-auto w-full" 
@@ -207,7 +219,7 @@ const TestimonialSection: React.FC = () => {
         {/* Floating button for scrolling */}
         <button
           onClick={handleScrollRight}
-          className="absolute z-50 top-2.5/5 right-4 transform -translate-y-1/2 bg-white text-green-500 p-2 rounded-full focus:outline-none"
+          className="absolute z-50 right-4 -bottom-4 transform -translate-y-1/2 bg-white text-green-500 p-2 rounded-full focus:outline-none"
         >
           <HiArrowCircleRight size={50} />
         </button>

@@ -16,7 +16,7 @@ import { Button } from "./ui/button";
 import Image from "next/image";
 import SignInBtn from "./sign-in-btn";
 import { insertUser } from "@/lib/db";
-
+import { DrawerDemo } from "./DrawerDemo";
 
 
 export default async function Navbar() {
@@ -47,12 +47,14 @@ export default async function Navbar() {
           src="/securenest_bg.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
-        <a href="/plans">
+        <a className="hidden md:block" href="/plans">
           <Button variant={"ghost"}>Plans</Button>
         </a>
-        <a href="/about">
+        <a className="hidden md:block" href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
+        <div className="block md:hidden">
+        </div>
         {auth ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -84,6 +86,7 @@ export default async function Navbar() {
         ) : (
           <SignInBtn/>
         )}
+          <DrawerDemo />
       </div>
     </nav>
   );
