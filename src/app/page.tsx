@@ -4,9 +4,9 @@ import {
   RegisterLink
 } from "@kinde-oss/kinde-auth-nextjs/server";
 import ImageSlider from "@/components/ImageSlider";
-import Plans from "@/components/Plans";
 import FeaturesSection from "@/components/FeatureSection";
 import TestimonialSection from "@/components/TestimonialSection";
+import TheftNews from "@/components/TheftNews";
 
 export default function Home() {
   return (
@@ -33,7 +33,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="w-2/3 flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
+          <div className="w-1/2 flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
             <Image 
               priority
               className="w-full md:w-1/3 h-1/3 object-cover object-center rounded"
@@ -81,7 +81,6 @@ export default function Home() {
       </section>
 
       <FeaturesSection/>
-      <Plans/>
       {/*  Duty Section */}
       {/* <section className="text-gray-600 body-font container">
         <div className="px-5 py-24 mx-auto flex flex-wrap">
@@ -138,6 +137,8 @@ export default function Home() {
       </div>
 
       <TestimonialSection/>
+
+      <TheftNews/>
     </main>
   );
 }

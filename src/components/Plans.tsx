@@ -10,16 +10,9 @@ export const priceData= [
       "features": {
         "description": "Includes Some of our Products",
         "items": [
-          "Wifi Camera",
-          "Door and Window Alarm",
-          "Echo Shaw 5",
-          "Smart garage door opener",
-          "Glass Break Sensor",
-          "Motion sensor",
-          "Smart light bulb",
-          "TP-Link indoor plug",
-          "TP-Link Outdoor plug",
-          "Doorbell Camera"
+          "Self Monitoring - From Smartphone",
+          "WiFi-Smart Camera",
+          "2✕ Door and Window Alarm",
         ]
       },
       "price": "14.99",
@@ -33,19 +26,10 @@ export const priceData= [
       "features": {
         "description": "Includes Most of our Products",
         "items": [
-          "Cell phone signal booster",
-          "Doorlock",
-          "Wifi Camera",
-          "Door and Window Alarm",
-          "Echo Shaw 5",
-          "Smart garage door opener",
-          "Glass Break Sensor",
-          "Google nest thermostat",
-          "Motion sensor",
-          "Smart light bulb",
-          "TP-Link indoor plug",
-          "TP-Link Outdoor plug",
-          "Doorbell Camera"
+          "Self Monitoring - From Smartphone",
+          "WiFi-Smart Camera",
+          "2✕ Door and Window Alarm",
+          "1 Motion Sensor (TP-Link)"
         ]
       },
       "price": "29.99",
@@ -61,19 +45,11 @@ export const priceData= [
       "features": {
         "description": "Includes All of our Products",
         "items": [
-          "Cell phone signal booster",
-          "Doorlock",
-          "Wifi Camera",
-          "Door and Window Alarm",
-          "Echo Shaw 5",
-          "Smart garage door opener",
-          "Glass Break Sensor",
-          "Google nest thermostat",
-          "Motion sensor",
-          "Smart light bulb",
-          "TP-Link indoor plug",
-          "TP-Link Outdoor plug",
-          "Doorbell Camera"
+          "Self Monitoring - From Smartphone",
+          "2✕ WiFi-Smart Camera",
+          "4✕ Door and Window Alarm",
+          "1 Motion Sensor (TP-Link)",
+          "Google Nest Thermostat"
         ]
       },
       "price": "49.99",
@@ -87,19 +63,9 @@ export const priceData= [
       "features": {
         "description": "For Outer City Desntinations",
         "items": [
-          "Cell phone signal booster",
-          "Doorlock",
-          "Wifi Camera",
-          "Door and Window Alarm",
-          "Echo Shaw 5",
-          "Smart garage door opener",
-          "Glass Break Sensor",
-          "Google nest thermostat",
-          "Motion sensor",
-          "Smart light bulb",
-          "TP-Link indoor plug",
-          "TP-Link Outdoor plug",
-          "Doorbell Camera"
+          "Cell Phone Signal Booster 5G",
+          "WiFi-Smart Camera",
+          "2✕ Door and Window Alarm",
         ]
       },
       "price": "34.99",

@@ -47,6 +47,9 @@ export default async function Navbar() {
           src="/securenest_bg.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
+        <a href="/plans">
+          <Button variant={"ghost"}>Plans</Button>
+        </a>
         <a href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
