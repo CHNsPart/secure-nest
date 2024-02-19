@@ -53,8 +53,6 @@ export default async function Navbar() {
         <a className="hidden md:block" href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
-        <div className="block md:hidden">
-        </div>
         {auth ? (
           <DropdownMenu>
             <DropdownMenuTrigger>
@@ -86,7 +84,9 @@ export default async function Navbar() {
         ) : (
           <SignInBtn/>
         )}
+        <div className="block md:hidden">
           <DrawerDemo />
+        </div>
       </div>
     </nav>
   );
