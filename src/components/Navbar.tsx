@@ -50,6 +50,9 @@ export default async function Navbar() {
         <a className="hidden md:block" href="/plans">
           <Button variant={"ghost"}>Plans</Button>
         </a>
+        <a className="hidden md:block" href="/products">
+          <Button variant={"ghost"}>Products</Button>
+        </a>
         <a className="hidden md:block" href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>

@@ -142,7 +142,7 @@ export default function Page() {
               <p className='text-lg'>${selectedPriceData.price} CAD/Month</p>
               <span className='italic text-gray-500'>Minimum 3 Years plan</span>
               <div className='flex items-start md:items-center gap-2'>
-                <input type="checkbox" onChange={handleCheckboxChange} />
+                <input className='accent-green-400 rounded-full' type="checkbox" onChange={handleCheckboxChange} />
                 <span className='text-sm'>{`Want us to Install for you? $${selectedPriceData.price}CAD/One Time Payment`}</span>
               </div>
             </div>
@@ -167,7 +167,7 @@ export default function Page() {
             const productQuantity = productQuantities[productNameLowercase] || { quantity: 0, name: title };
 
             return (
-              <div key={index} className='border min-w-24 p-2 rounded-xl'>
+              <div key={index} className='border hover:border-green-500 w-full md:max-w-56 p-2 rounded-xl'>
                 <Image
                   width={200}
                   height={200}
