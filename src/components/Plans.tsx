@@ -18,6 +18,7 @@ export const priceData = [
     price: "14.99",
     buttonText: "Buy Now",
     buttonColor: "green",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_BASIC_PLAN_PRICE_ID ?? "",
     link: "/plans/basic",
   },
   {
@@ -37,6 +38,7 @@ export const priceData = [
     buttonColor: "green",
     borderColor: "green",
     popular: true,
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_SILVER_PLAN_PRICE_ID ?? "",
     link: "/plans/silver",
   },
   {
@@ -55,6 +57,7 @@ export const priceData = [
     price: "49.99",
     buttonText: "Buy Now",
     buttonColor: "green",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_GOLD_PLAN_PRICE_ID ?? "",
     link: "/plans/gold",
   },
   {
@@ -71,6 +74,7 @@ export const priceData = [
     price: "34.99",
     buttonText: "Buy Now",
     buttonColor: "green",
+    stripePriceId: process.env.NEXT_PUBLIC_STRIPE_OFF_CITY_PLAN_PRICE_ID ?? "",
     link: "/plans/offcity",
   },
 ];
