@@ -99,20 +99,25 @@ import React, { useEffect, useState } from "react";
 
 import { useCookies } from "next-client-cookies";
 
+import { CheckoutSubscriptionBody } from "@/app/checkout-sessions/route";
+import { loadStripe } from "@stripe/stripe-js";
+import Stripe from "stripe";
+
 export default function Page() {
   const { plan }: any | string = useParams();
   const selectedPriceData = priceData.find((data) => data.id === plan);
   const [installCost, setInstallCost] = useState(false);
-  const [productQuantities, setProductQuantities] = useState<{
-    [key: string]: { quantity: number; name: string };
-  }>({});
+  const [productQuantities, setProductQuantities] = useState<any>([]);
+  const [initialQuantity, setInitialQuantity] = useState<number>(0);
 
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
   // const auth: boolean = await isAuthenticated();
   const cookies = useCookies();
 
-  const user = cookies.get("user");
+  const user: any = cookies.get("user");
+
+  // console.log(user);
 
   const handleCheckboxChange = () => {
     setInstallCost(!installCost);
@@ -120,29 +125,87 @@ export default function Page() {
 
   const handleQuantityChange = (
     productName: string,
+    price: number | string | any,
     event: React.ChangeEvent<HTMLInputElement>
   ) => {
-    const newQuantity = parseInt(event.target.value, 10) || 0;
+    console.log(event.target.value);
+    var newQuantity = Number(event.target.value) || 0;
     const productNameLowercase = productName.toLowerCase();
 
-    setProductQuantities((prevQuantities) => ({
-      ...prevQuantities,
-      [productNameLowercase]: {
-        quantity: newQuantity,
-        name: productName,
-      },
-    }));
+    // setInitialQuantity(Number(event.target.value));
+
+    // setProductQuantities((prevQuantities) => ({
+    //   ...prevQuantities,
+    //   [productNameLowercase]: {
+    //     quantity: newQuantity,
+    //     name: productName,
+    //   },
+    // }));
+    setProductQuantities((prevQuantities: any) =>
+      [
+        ...prevQuantities,
+        {
+          price_data: {
+            currency: "cad",
+            recurring: {
+              interval: "month",
+            },
+            unit_amount: price * 100,
+            product_data: {
+              name: productName,
+              description: productName + ` subscription for ${price}/month`,
+            },
+          },
+          quantity: newQuantity,
+        },
+        // {
+        //   quantity: newQuantity,
+        //   name: productName,
+        //   price,
+        // },
+      ].filter((obj: any, index) => {
+        return (
+          index ===
+          [
+            ...prevQuantities,
+            {
+              price_data: {
+                currency: "cad",
+                recurring: {
+                  interval: "month",
+                },
+                unit_amount: price * 100,
+                product_data: {
+                  name: productName,
+                  description: productName + ` subscription for ${price}/month`,
+                },
+              },
+              quantity: newQuantity,
+            },
+            // {
+            //   quantity: newQuantity,
+            //   name: productName,
+            //   price,
+            // },
+          ].findIndex(
+            (itm: any) =>
+              obj?.price_data?.product_data?.name ===
+              itm?.price_data?.product_data?.name
+          )
+        );
+      })
+    );
   };
 
   console.log(installCost);
   console.log(productQuantities);
 
-  let planInfo = {};
+  let planInfo: any = {};
 
   useEffect(() => {
     if (plan.toLowerCase() === "basic") {
       planInfo = {
-        name: "Basic Plan",
+        name: "Basic",
         initialCost: 14.99,
         planYear: 3,
         installationCost: 14.99,
@@ -211,7 +274,7 @@ export default function Page() {
       };
     } else if (plan.toLowerCase() === "silver") {
       planInfo = {
-        name: "Silver Plan",
+        name: "Silver",
         initialCost: 29.99,
         planYear: 3,
         installationCost: 29.99,
@@ -298,7 +361,7 @@ export default function Page() {
       };
     } else if (plan.toLowerCase() === "gold") {
       planInfo = {
-        name: "Gold Plan",
+        name: "Gold",
         initialCost: 49.99,
         planYear: 3,
         installationCost: 49.99,
@@ -385,7 +448,7 @@ export default function Page() {
       };
     } else if (plan.toLowerCase() === "offcity") {
       planInfo = {
-        name: "Off-City Plan",
+        name: "Off-City",
         initialCost: 34.99,
         planYear: 3,
         installationCost: 34.99,
@@ -471,16 +534,65 @@ export default function Page() {
         ],
       };
     }
-  }, [plan]);
+  }, [plan, productQuantities]);
 
   const router = useRouter();
 
-  const handleContinueToCheckout = () => {
+  const handleContinueToCheckout = async () => {
     // router.push("/api/auth/login");
     if (!user) {
       window.location.href = "/api/auth/login";
     } else {
       console.log(planInfo);
+
+      // step 1: load stripe
+      const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
+      const stripe = await loadStripe(STRIPE_PK);
+
+      // step 2: define the data for monthly subscription
+      const body: CheckoutSubscriptionBody = {
+        customerId: user?.id,
+        customer_email: user?.email,
+        interval: "month",
+        amount: planInfo?.initialCost * 100,
+        plan: planInfo?.name,
+        planDescription:
+          planInfo?.name + ` subscription for ${planInfo?.initialCost}/month`,
+        line_items: [
+          ...productQuantities,
+          // generate inline price and product
+          {
+            price_data: {
+              currency: "cad",
+              recurring: {
+                interval: "month",
+              },
+              unit_amount: planInfo?.initialCost * 100,
+              product_data: {
+                name: planInfo?.name,
+                description:
+                  planInfo?.name +
+                  ` subscription for ${planInfo?.initialCost}/month`,
+              },
+            },
+            quantity: 1,
+          },
+        ],
+      };
+
+      // step 3: make a post fetch api call to /checkout-session handler
+      const result = await fetch("/checkout-sessions", {
+        method: "post",
+        body: JSON.stringify(body, null),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+
+      // step 4: get the data and redirect to checkout using the sessionId
+      const data = (await result.json()) as Stripe.Checkout.Session;
+      const sessionId = data.id!;
+      stripe?.redirectToCheckout({ sessionId });
     }
   };
 
@@ -528,10 +640,10 @@ export default function Page() {
           // Render card only if the price is not null
           if (price !== null) {
             const productNameLowercase = title.toLowerCase();
-            const productQuantity = productQuantities[productNameLowercase] || {
-              quantity: 0,
-              name: title,
-            };
+            // const productQuantity = productQuantities[productNameLowercase] || {
+            //   quantity: 0,
+            //   name: title,
+            // };
 
             return (
               <div
@@ -561,8 +673,9 @@ export default function Page() {
                     <input
                       type="number"
                       className="max-w-16 h-10 border rounded-md text-center"
-                      value={productQuantity.quantity}
-                      onChange={(e) => handleQuantityChange(title, e)}
+                      // value={productQuantity.quantity}
+                      defaultValue={0}
+                      onChange={(e) => handleQuantityChange(title, price, e)}
                     />
                   </div>
                 </div>
