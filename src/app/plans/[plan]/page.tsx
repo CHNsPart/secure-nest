@@ -109,6 +109,7 @@ export default function Page() {
   const [installCost, setInstallCost] = useState(false);
   const [productQuantities, setProductQuantities] = useState<any>([]);
   const [initialQuantity, setInitialQuantity] = useState<number>(0);
+  const [loading, setLoading] = useState(false);
 
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
@@ -122,6 +123,64 @@ export default function Page() {
   const handleCheckboxChange = () => {
     setInstallCost(!installCost);
   };
+
+  useEffect(() => {
+    if (installCost) {
+      setProductQuantities((prevQuantities: any) =>
+        [
+          ...prevQuantities,
+          {
+            price_data: {
+              currency: "cad",
+              unit_amount: planInfo?.initialCost * 100,
+              product_data: {
+                name: planInfo?.name + " installation",
+                description:
+                  planInfo?.name +
+                  ` installation for ${planInfo?.initialCost}/One Time Payment`,
+              },
+            },
+            quantity: 1,
+          },
+        ].filter((obj: any, index) => {
+          return (
+            index ===
+            [
+              ...prevQuantities,
+              {
+                price_data: {
+                  currency: "cad",
+                  unit_amount: planInfo?.initialCost * 100,
+                  product_data: {
+                    name: planInfo?.name + " installation",
+                    description:
+                      planInfo?.name +
+                      ` installation for ${planInfo?.initialCost}/One Time Payment`,
+                  },
+                },
+                quantity: 1,
+              },
+            ].findIndex(
+              (itm: any) =>
+                obj?.price_data?.product_data?.name ===
+                itm?.price_data?.product_data?.name
+            )
+          );
+        })
+      );
+    } else {
+      // console.log("deleted");
+      //remove installation cost from array
+      setProductQuantities((prevQuantity: any) =>
+        prevQuantity.filter(function (obj: any) {
+          return (
+            obj?.price_data?.product_data?.name !==
+            planInfo?.name + " installation"
+          );
+        })
+      );
+    }
+  }, [installCost]);
 
   const handleQuantityChange = (
     productName: string,
@@ -141,60 +200,70 @@ export default function Page() {
     //     name: productName,
     //   },
     // }));
-    setProductQuantities((prevQuantities: any) =>
-      [
-        ...prevQuantities,
-        {
-          price_data: {
-            currency: "cad",
-            recurring: {
-              interval: "month",
-            },
-            unit_amount: price * 100,
-            product_data: {
-              name: productName,
-              description: productName + ` subscription for ${price}/month`,
-            },
-          },
-          quantity: newQuantity,
-        },
-        // {
-        //   quantity: newQuantity,
-        //   name: productName,
-        //   price,
-        // },
-      ].filter((obj: any, index) => {
-        return (
-          index ===
-          [
-            ...prevQuantities,
-            {
-              price_data: {
-                currency: "cad",
-                recurring: {
-                  interval: "month",
-                },
-                unit_amount: price * 100,
-                product_data: {
-                  name: productName,
-                  description: productName + ` subscription for ${price}/month`,
-                },
+    if (newQuantity > 0) {
+      setProductQuantities((prevQuantities: any) =>
+        [
+          ...prevQuantities,
+          {
+            price_data: {
+              currency: "cad",
+              recurring: {
+                interval: "month",
               },
-              quantity: newQuantity,
+              unit_amount: price * 100,
+              product_data: {
+                name: productName,
+                description: productName + ` subscription for ${price}/month`,
+              },
             },
-            // {
-            //   quantity: newQuantity,
-            //   name: productName,
-            //   price,
-            // },
-          ].findIndex(
-            (itm: any) =>
-              obj?.price_data?.product_data?.name ===
-              itm?.price_data?.product_data?.name
-          )
-        );
-      })
-    );
+            quantity: newQuantity,
+          },
+          // {
+          //   quantity: newQuantity,
+          //   name: productName,
+          //   price,
+          // },
+        ].filter((obj: any, index) => {
+          return (
+            index ===
+            [
+              ...prevQuantities,
+              {
+                price_data: {
+                  currency: "cad",
+                  recurring: {
+                    interval: "month",
+                  },
+                  unit_amount: price * 100,
+                  product_data: {
+                    name: productName,
+                    description:
+                      productName + ` subscription for ${price}/month`,
+                  },
+                },
+                quantity: newQuantity,
+              },
+              // {
+              //   quantity: newQuantity,
+              //   name: productName,
+              //   price,
+              // },
+            ].findIndex(
+              (itm: any) =>
+                obj?.price_data?.product_data?.name ===
+                itm?.price_data?.product_data?.name
+            )
+          );
+        })
+      );
+    } else {
+      //remove product if it is set to zero
+      setProductQuantities((prevQuantity: any) =>
+        prevQuantity.filter(function (obj: any) {
+          return obj?.price_data?.product_data?.name !== productName;
+        })
+      );
+    }
   };
 
   console.log(installCost);
@@ -534,16 +603,23 @@ export default function Page() {
         ],
       };
     }
-  }, [plan, productQuantities]);
+  }, [plan, productQuantities, installCost]);
 
   const router = useRouter();
 
   const handleContinueToCheckout = async () => {
+    setLoading(true);
     // router.push("/api/auth/login");
     if (!user) {
       window.location.href = "/api/auth/login";
     } else {
       console.log(planInfo);
+
+      //get the user info
+      //create customer
+      const getUser = await fetch("/api/getCustomer");
+
+      const getUserInfo = await getUser.json();
 
       // step 1: load stripe
       const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
@@ -551,8 +627,8 @@ export default function Page() {
 
       // step 2: define the data for monthly subscription
       const body: CheckoutSubscriptionBody = {
-        customerId: user?.id,
-        customer_email: user?.email,
+        customerId: getUserInfo?.stripeCustomerId,
+        // customer_email: "deepta.barua@northsouth.edu",
         interval: "month",
         amount: planInfo?.initialCost * 100,
         plan: planInfo?.name,
@@ -580,6 +656,23 @@ export default function Page() {
         ],
       };
 
+      //create customer
+      const customer = await fetch("/api/customer", {
+        method: "post",
+        body: JSON.stringify(
+          {
+            name: user?.given_name + " " + user?.family_name,
+            email: user?.email,
+          },
+          null
+        ),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+
+      // const customerResult = await customer.json();
+
       // step 3: make a post fetch api call to /checkout-session handler
       const result = await fetch("/checkout-sessions", {
         method: "post",
@@ -591,8 +684,12 @@ export default function Page() {
 
       // step 4: get the data and redirect to checkout using the sessionId
       const data = (await result.json()) as Stripe.Checkout.Session;
+      // console.log(data);
+      // alert(JSON.stringify(data));
       const sessionId = data.id!;
       stripe?.redirectToCheckout({ sessionId });
+
+      setLoading(false);
     }
   };
 
@@ -617,12 +714,24 @@ export default function Page() {
                 <span className="text-sm">{`Want us to Install for you? $${selectedPriceData.price}CAD/One Time Payment`}</span>
               </div>
             </div>
-            <button
-              className={`bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md mt-4`}
-              onClick={handleContinueToCheckout}
-            >
-              Continue to checkout
-            </button>
+            {loading ? (
+              <>
+                <button
+                  className={`bg-gray-300 hover:bg-gray-400 text-white font-semibold px-4 py-2 rounded-md mt-4`}
+                >
+                  Please wait...
+                </button>
+              </>
+            ) : (
+              <>
+                <button
+                  className={`bg-green-500 hover:bg-green-600 text-white font-semibold px-4 py-2 rounded-md mt-4`}
+                  onClick={handleContinueToCheckout}
+                >
+                  Continue to checkout
+                </button>
+              </>
+            )}
           </div>
         )}
       </div>

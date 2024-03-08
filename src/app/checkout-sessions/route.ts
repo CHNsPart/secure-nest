@@ -21,7 +21,11 @@ export async function POST(req: Request) {
   // if user is logged in, redirect to thank you page, otherwise redirect to signup page.
   const success_url = !body.customerId
     ? `${origin}/api/auth/login`
-    : `${origin}/thankyou?session_id=${body.customerId}`;
+    : `${origin}`;
+  // : `${origin}/thankyou?session_id=${body.customerId}`;
+  // : `${origin}/plans/${body?.plan
+  //   ?.toLowerCase()
+  //   ?.replaceAll("-", "")}`
 
   try {
     //customer create
@@ -30,7 +34,7 @@ export async function POST(req: Request) {
       customer: body.customerId,
       mode: "subscription", // mode should be subscription
       line_items: body.line_items,
-      customer_email: body.customer_email,
+      // customer_email: body.customer_email,
       success_url: success_url,
       cancel_url: `${origin}/plans/${body?.plan
         ?.toLowerCase()
