@@ -5,7 +5,6 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/Footer";
-import ogImage from "../../public/images/opengraph-image.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,13 +19,14 @@ export const metadata: Metadata = {
     title: "Secure Nest",
     description: "Build your smart home with a Local Canadian security provider.",
     type: "website",
+    locale: 'en_US',
     url: "https://securenest.ca",
     siteName: "Secure Nest",
     images: [
       {
-        url: ogImage.src,
-        width: ogImage.width,
-        height: ogImage.height,
+        url: "https://i.ibb.co/hdpg8Ft/securenestog.png",
+        width: "1200",
+        height: "630",
         alt: "securenest",
       },
     ],
@@ -36,7 +36,7 @@ export const metadata: Metadata = {
     title: "Secure Nest",
     description: "Build your smart home with a Local Canadian security provider.",
     creator: "@CHNsPart",
-    images: [ogImage.src],
+    images: ["https://i.ibb.co/hdpg8Ft/securenestog.png"],
   },
 }; 
 
@@ -49,19 +49,6 @@ export default function RootLayout({
   
   return (
     <html lang="en">
-      <head>
-        {/* Meta tags for OpenGraph */}
-        <meta property="og:image" content="https://secure-nest-551plx6zj-chnspart.vercel.app/_next/static/media/opengraph-image.01e8f428.png" />
-        <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
-
-        {/* Twitter card meta tags */}
-        <meta name="twitter:image" content="https://secure-nest-551plx6zj-chnspart.vercel.app/_next/static/media/opengraph-image.01e8f428.png" />
-        <meta name="twitter:image:type" content="image/png" />
-        <meta name="twitter:image:width" content="1200" />
-        <meta name="twitter:image:height" content="630" />
-      </head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
