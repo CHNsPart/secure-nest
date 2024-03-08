@@ -49,6 +49,19 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+      <head>
+        {/* Meta tags for OpenGraph */}
+        <meta property="og:image" content={ogImage.src} />
+        <meta property="og:image:type" content="image/png" />
+        <meta property="og:image:width" content={ogImage.width.toString()} />
+        <meta property="og:image:height" content={ogImage.height.toString()} />
+
+        {/* Twitter card meta tags */}
+        <meta name="twitter:image" content={ogImage.src} />
+        <meta name="twitter:image:type" content="image/png" />
+        <meta name="twitter:image:width" content={ogImage.width.toString()} />
+        <meta name="twitter:image:height" content={ogImage.height.toString()} />
+      </head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
@@ -58,6 +71,3 @@ export default function RootLayout({
     </html>
   );
 }
-
-
-
