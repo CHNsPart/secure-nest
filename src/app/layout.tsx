@@ -19,18 +19,23 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const imageUrl = '/images/opengraph-image.png';
+  
   return (
     <html lang="en">
       <head>
-        <meta property="og:image" content="<generated>" />
-        <meta property="og:image:type" content="<generated>" />
-        <meta property="og:image:width" content="<generated>" />
-        <meta property="og:image:height" content="<generated>" />
-        
-        <meta name="twitter:image" content="<generated>" />
-        <meta name="twitter:image:type" content="<generated>" />
-        <meta name="twitter:image:width" content="<generated>" />
-        <meta name="twitter:image:height" content="<generated>" />
+        {/* Meta tags for OpenGraph */}
+        <meta property="og:image" content={imageUrl} />
+        <meta property="og:image:type" content="image/png" /> {/* Set the appropriate image type */}
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+
+        {/* Twitter card meta tags */}
+        <meta name="twitter:image" content={imageUrl} />
+        <meta name="twitter:image:type" content="image/png" /> {/* Set the appropriate image type */}
+        <meta name="twitter:image:width" content="1200" />
+        <meta name="twitter:image:height" content="630" />
       </head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
@@ -41,3 +46,6 @@ export default function RootLayout({
     </html>
   );
 }
+
+
+
