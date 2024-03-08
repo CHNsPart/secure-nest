@@ -51,16 +51,16 @@ export default function RootLayout({
     <html lang="en">
       <head>
         {/* Meta tags for OpenGraph */}
-        <meta property="og:image" content={ogImage.src} />
+        <meta property="og:image" content="https://secure-nest-551plx6zj-chnspart.vercel.app/_next/static/media/opengraph-image.01e8f428.png" />
         <meta property="og:image:type" content="image/png" />
-        <meta property="og:image:width" content={ogImage.width.toString()} />
-        <meta property="og:image:height" content={ogImage.height.toString()} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
 
         {/* Twitter card meta tags */}
-        <meta name="twitter:image" content={ogImage.src} />
+        <meta name="twitter:image" content="https://secure-nest-551plx6zj-chnspart.vercel.app/_next/static/media/opengraph-image.01e8f428.png" />
         <meta name="twitter:image:type" content="image/png" />
-        <meta name="twitter:image:width" content={ogImage.width.toString()} />
-        <meta name="twitter:image:height" content={ogImage.height.toString()} />
+        <meta name="twitter:image:width" content="1200" />
+        <meta name="twitter:image:height" content="630" />
       </head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
