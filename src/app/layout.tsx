@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/Footer";
+import ogImage from "../../public/images/opengraph-image.png";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -23,9 +24,9 @@ export const metadata: Metadata = {
     siteName: "Secure Nest",
     images: [
       {
-        url: "https://github.com/CHNsPart/secure-nest/assets/58574102/8d507f03-6fb1-42a2-b3a0-1cf82d8e23b0",
-        width: 1200,
-        height: 630,
+        url: ogImage.src,
+        width: ogImage.width,
+        height: ogImage.height,
         alt: "securenest",
       },
     ],
@@ -35,7 +36,7 @@ export const metadata: Metadata = {
     title: "Secure Nest",
     description: "Build your smart home with a Local Canadian security provider.",
     creator: "@CHNsPart",
-    images: ["https://github.com/CHNsPart/secure-nest/assets/58574102/8d507f03-6fb1-42a2-b3a0-1cf82d8e23b0"],
+    images: [ogImage.src],
   },
 }; 
 
