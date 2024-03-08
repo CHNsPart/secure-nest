@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -49,6 +50,22 @@ export default function RootLayout({
   
   return (
     <html lang="en">
+      <Head>
+
+        <meta property="og:url" content="https://securenest.ca"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:title" content="Secure Nest"/>
+        <meta property="og:description" content="Build your smart home with a Local Canadian security provider."/>
+        <meta property="og:image" content="https://i.ibb.co/hdpg8Ft/securenestog.png"/>
+
+        <meta name="twitter:card" content="summary_large_image"/>
+        <meta property="twitter:domain" content="securenest.ca"/>
+        <meta property="twitter:url" content="https://securenest.ca"/>
+        <meta name="twitter:title" content="Secure Nest"/>
+        <meta name="twitter:description" content="Build your smart home with a Local Canadian security provider."/>
+        <meta name="twitter:image" content="https://i.ibb.co/hdpg8Ft/securenestog.png"/>
+
+      </Head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
