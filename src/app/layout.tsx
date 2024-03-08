@@ -5,6 +5,7 @@ import { Inter } from "next/font/google";
 import Navbar from "@/components/Navbar";
 import { Toaster } from "@/components/ui/toaster";
 import Footer from "@/components/Footer";
+import Head from "next/head";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,23 +21,25 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
 
-  const imageUrl = '/images/opengraph-image.png';
   
   return (
     <html lang="en">
-      <head>
-        {/* Meta tags for OpenGraph */}
-        <meta property="og:image" content={imageUrl} />
-        <meta property="og:image:type" content="image/png" /> {/* Set the appropriate image type */}
-        <meta property="og:image:width" content="1200" />
-        <meta property="og:image:height" content="630" />
+      <Head>
 
-        {/* Twitter card meta tags */}
-        <meta name="twitter:image" content={imageUrl} />
-        <meta name="twitter:image:type" content="image/png" /> {/* Set the appropriate image type */}
-        <meta name="twitter:image:width" content="1200" />
-        <meta name="twitter:image:height" content="630" />
-      </head>
+        <meta property="og:url" content="https://securenest.ca" />
+        <meta property="og:type" content="website" />
+        <meta property="og:title" content="Secure Nest" />
+        <meta property="og:description" content="Build your smart home with a Local Canadian security provider." />
+        <meta property="og:image" content="https://github.com/CHNsPart/secure-nest/assets/58574102/8d507f03-6fb1-42a2-b3a0-1cf82d8e23b0" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta property="twitter:domain" content="securenest.ca" />
+        <meta property="twitter:url" content="https://securenest.ca" />
+        <meta name="twitter:title" content="Secure Nest" />
+        <meta name="twitter:description" content="Build your smart home with a Local Canadian security provider." />
+        <meta name="twitter:image" content="https://github.com/CHNsPart/secure-nest/assets/58574102/8d507f03-6fb1-42a2-b3a0-1cf82d8e23b0" />
+
+      </Head>
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
