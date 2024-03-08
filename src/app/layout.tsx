@@ -52,7 +52,7 @@ export default function RootLayout({
     <html lang="en">
       <Head>
 
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="./favicon.ico" />
 
         <meta property="og:url" content="https://securenest.ca"/>
         <meta property="og:type" content="website"/>
