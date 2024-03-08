@@ -9,27 +9,6 @@ const YourIcon: React.FC<YourIconProps> = ({ variant }) => {
 
   if(variant==="smartphone") {
       return (
-        // <svg
-        //   xmlns="http://www.w3.org/2000/svg"
-        //   xmlnsXlink="http://www.w3.org/1999/xlink"
-        //   width="256"
-        //   height="256"
-        //   viewBox="0 0 256 256"
-        //   xmlSpace="preserve"
-        //   className="size-6" // Adjust the size as needed
-        // >
-        //   <g transform="translate(1.4065934065934016 1.4065934065934016) scale(2.81 2.81)">
-        //     <path
-        //       className="fill-current text-green-500"
-        //       d="M 61.776 0 H 28.224 c -4.189 0 -7.598 3.409 -7.598 7.598 v 74.803 c 0 4.189 3.409 7.599 7.598 7.599 h 33.553 c 4.189 0 7.599 -3.409 7.599 -7.599 V 7.598 C 69.375 3.409 65.966 0 61.776 0 z M 64.375 82.401 c 0 1.433 -1.166 2.599 -2.599 2.599 H 28.224 c -1.433 0 -2.598 -1.166 -2.598 -2.599 V 7.598 C 25.625 6.166 26.791 5 28.224 5 h 3.839 c 0.201 2.629 1.973 4.711 4.136 4.711 h 17.603 c 2.163 0 3.935 -2.082 4.136 -4.711 h 3.839 c 1.433 0 2.599 1.166 2.599 2.598 V 82.401 z"
-        //     />
-        //     <path
-        //       className="fill-white"
-        //       d="M 46.884 6.536 h -9.578 c -0.552 0 -1 -0.448 -1 -1 s 0.448 -1 1 -1 h 9.578 c 0.553 0 1 0.448 1 1 S 47.437 6.536 46.884 6.536 z"
-        //     />
-        //     <circle cx="51.991" cy="5.541" r="0.911" className="fill-white" />
-        //   </g>
-        // </svg>
         <svg width="512" height="512" className='size-6' viewBox="0 0 14 14" xmlns="http://www.w3.org/2000/svg">
             <path fill="currentColor" className='text-green-500' fillRule="evenodd" d="M3.5 1.75a.25.25 0 0 1 .25-.25h6.5a.25.25 0 0 1 .25.25v10.5a.25.25 0 0 1-.25.25H3.802a.753.753 0 0 1-.179-.114a.53.53 0 0 1-.123-.147zM3.75 0A1.75 1.75 0 0 0 2 1.75v10.5c0 .592.361 1.032.65 1.278c.156.133.328.243.498.322c.154.073.37.15.602.15h6.5A1.75 1.75 0 0 0 12 12.25V1.75A1.75 1.75 0 0 0 10.25 0zM6.5 9.75a.75.75 0 0 0 0 1.5h1a.75.75 0 0 0 0-1.5z" clipRule="evenodd"/>
         </svg>
