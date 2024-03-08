@@ -114,9 +114,9 @@ export default function Page() {
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
   // const auth: boolean = await isAuthenticated();
-  const cookies = useCookies();
+  const cookies: any = useCookies();
 
-  const user: any = cookies.get("user");
+  const user: any = JSON.parse(cookies.get("user"));
 
   // console.log(user);
 
@@ -224,6 +224,19 @@ export default function Page() {
           //   price,
           // },
         ].filter((obj: any, index) => {
+          if (
+            obj?.price_data?.product_data?.name === productName &&
+            obj?.quantity < Number(event.target.value)
+          ) {
+            obj.quantity = obj?.quantity + 1;
+          } else if (
+            obj?.price_data?.product_data?.name === productName &&
+            obj?.quantity > Number(event.target.value)
+          ) {
+            obj.quantity = obj?.quantity - 1;
+          }
+          // console.log(obj?.price_data?.product_data?.name);
+          // console.log(productName);
           return (
             index ===
             [
@@ -243,11 +256,6 @@ export default function Page() {
                 },
                 quantity: newQuantity,
               },
-              // {
-              //   quantity: newQuantity,
-              //   name: productName,
-              //   price,
-              // },
             ].findIndex(
               (itm: any) =>
                 obj?.price_data?.product_data?.name ===
@@ -615,11 +623,28 @@ export default function Page() {
     } else {
       console.log(planInfo);
 
+      //create customer
+      const customer = await fetch("/api/customer", {
+        method: "post",
+        body: JSON.stringify(
+          {
+            name: user?.given_name + " " + user?.family_name,
+            email: user?.email,
+          },
+          null
+        ),
+        headers: {
+          "content-type": "application/json",
+        },
+      });
+
       //get the user info
       //create customer
       const getUser = await fetch("/api/getCustomer");
 
       const getUserInfo = await getUser.json();
+
+      console.log(getUserInfo);
 
       // step 1: load stripe
       const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;
@@ -655,21 +680,6 @@ export default function Page() {
           },
         ],
       };
-
-      //create customer
-      const customer = await fetch("/api/customer", {
-        method: "post",
-        body: JSON.stringify(
-          {
-            name: user?.given_name + " " + user?.family_name,
-            email: user?.email,
-          },
-          null
-        ),
-        headers: {
-          "content-type": "application/json",
-        },
-      });
 
       // const customerResult = await customer.json();
 

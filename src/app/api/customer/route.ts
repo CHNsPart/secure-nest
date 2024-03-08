@@ -20,7 +20,7 @@ if (process.env.NODE_ENV === "production") {
   prisma = global.cachedPrisma;
 }
 
-export const db = prisma;
+// export const db = prisma;
 
 // data needed for checkout
 export interface CustomerBody {
@@ -47,8 +47,8 @@ export async function POST(req: Request) {
     //customer create
     if (!getCustomer?.stripeCustomerId) {
       const customer = await stripe.customers.create({
-        email: user?.email,
-        name: user?.given_name + " " + user?.family_name,
+        email: user?.email ?? body?.email,
+        name: user?.given_name + " " + user?.family_name ?? body?.name,
       });
 
       if (customer) {

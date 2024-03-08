@@ -18,7 +18,7 @@ if (process.env.NODE_ENV === "production") {
   prisma = global.cachedPrisma;
 }
 
-export const db = prisma;
+// export const db = prisma;
 
 // data needed for checkout
 // export interface CustomerBody {
