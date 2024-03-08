@@ -52,6 +52,8 @@ export default function RootLayout({
     <html lang="en">
       <Head>
 
+      <link rel="icon" href="/favicon.ico" />
+
         <meta property="og:url" content="https://securenest.ca"/>
         <meta property="og:type" content="website"/>
         <meta property="og:title" content="Secure Nest"/>
@@ -66,6 +68,7 @@ export default function RootLayout({
         <meta name="twitter:image" content="https://i.ibb.co/hdpg8Ft/securenestog.png"/>
 
       </Head>
+
       <body suppressHydrationWarning={true} className={cn("w-screen", inter.className)}>
         <Navbar />
         {children}
