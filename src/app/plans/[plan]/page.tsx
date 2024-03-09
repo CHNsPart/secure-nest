@@ -116,7 +116,9 @@ export default function Page() {
   // const auth: boolean = await isAuthenticated();
   const cookies: any = useCookies();
 
-  const user: any = JSON.parse(cookies.get("user"));
+  const user: any = cookies.get("user")
+    ? JSON.parse(cookies.get("user"))
+    : cookies.get("user");
 
   // console.log(user);
 
