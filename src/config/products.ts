@@ -12,7 +12,7 @@ import google from "../../public/google.png";
 import echo from "../../public/echo.png";
 import motion from "../../public/motion.jpg";
 import light from "../../public/light.jpg";
-
+import landline from "../../public/landline.jpg";
 export interface Product {
     title: string;
     image: StaticImageData;
@@ -36,6 +36,35 @@ export interface Product {
   }
 
 export const products: Product[] = [
+  {
+      title: "Landline Telephone Line",
+      image: landline,
+      description: `
+        Free Canada Calling (Provinces)
+        Keep Existing Number
+        Call Display
+        Voicemail
+        Call Forward
+        3-Way Calling
+        Fair Usage Policy
+      `,
+      basic: {
+          price: null,
+          link: null
+      },
+      silver: {
+          price: 9.99,
+          link: "/stripelink"
+      },
+      gold: {
+          price: 9.99,
+          link: "/stripelink"
+      },
+      offcity: {
+          price: 9.99,
+          link: null
+      },
+  },    
   {
     title: "Cell phone signal booster",
     image: cell,

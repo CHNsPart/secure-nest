@@ -102,6 +102,10 @@ import { useCookies } from "next-client-cookies";
 import { CheckoutSubscriptionBody } from "@/app/checkout-sessions/route";
 import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
+import { IoMdCloseCircle } from "react-icons/io";
+import { FaStar } from "react-icons/fa";
+import { Button } from "@/components/ui/button";
+
 
 export default function Page() {
   const { plan }: any | string = useParams();
@@ -110,10 +114,12 @@ export default function Page() {
   const [productQuantities, setProductQuantities] = useState<any>([]);
   const [initialQuantity, setInitialQuantity] = useState<number>(0);
   const [loading, setLoading] = useState(false);
+  const [landLine, setLandLine] = useState(false);
 
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
   // const auth: boolean = await isAuthenticated();
+
   const cookies: any = useCookies();
 
   const user: any = cookies.get("user")
@@ -705,6 +711,67 @@ export default function Page() {
     }
   };
 
+
+  const Modal = ({ closeModal }:any) => {
+    return (
+      <div className="absolute flex justify-center items-center top-0 left-0 w-full min-h-full bg-black/50">
+        <div className="z-50 p-10 rounded-xl bg-white">
+          <span className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500" onClick={closeModal}>
+           <span className="text-lg font-semibold text-green-500">Add a Landline</span>  <IoMdCloseCircle size={25}/>
+          </span>
+          <p className="p-2.5 border rounded-xl border-green-500">
+            
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Free Canada Calling (Provinces)
+            </span>
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Keep Existing Number
+            </span>
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Call Display
+            </span>
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Voicemail
+            </span>
+           <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Call Forward
+            </span> 
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> 3-Way Calling
+            </span>
+            <span className="flex gap-2">
+              <FaStar className="text-green-500" /> Fair Usage Policy
+            </span>
+          </p>
+          <span className="w-full flex justify-between py-2.5">
+            <span className="italic text-gray-500">Want to add a number?</span> 
+            <input type="checkbox" checked={landLine} onChange={() => setLandLine(!landLine)} />
+          </span>
+          <Button className="w-full bg-green-500 hover:bg-green-600" onClick={closeModal}>Continue</Button>
+        </div>
+      </div>
+    );
+  };
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
+  const prodDetails = (title: string) => {
+    if (title === "Landline Telephone Line") {
+      // console.log("gotem");
+      openModal();
+    } else {
+      return;
+    }
+  };
+
   return (
     <div className="container min-h-screen w-full py-12">
       <p className="text-4xl">{plan.toUpperCase()}</p>
@@ -769,6 +836,7 @@ export default function Page() {
             return (
               <div
                 key={index}
+                onClick={()=>prodDetails(title)}
                 className="border hover:border-green-500 w-full md:max-w-56 p-2 rounded-xl"
               >
                 <Image
@@ -791,13 +859,20 @@ export default function Page() {
                     </span>
                   </div>
                   <div>
-                    <input
-                      type="number"
-                      className="max-w-16 h-10 border rounded-md text-center"
-                      // value={productQuantity.quantity}
-                      defaultValue={0}
-                      onChange={(e) => handleQuantityChange(title, price, e)}
-                    />
+                    { title==="Landline Telephone Line" ?
+                      <div className="bg-green-500 hover:bg-green-600 p-2 rounded-xl text-white cursor-pointer">
+                        ADD +
+                      </div>
+                      :
+                      <input
+                        type="number"
+                        className="max-w-16 h-10 border rounded-md text-center"
+                        // value={productQuantity.quantity}
+                        defaultValue={0}
+                        min={0}
+                        onChange={(e) => handleQuantityChange(title, price, e)}
+                      />
+                    }
                   </div>
                 </div>
               </div>
@@ -807,6 +882,7 @@ export default function Page() {
         })}
       </div>
       {/* Product cards end */}
+      {isModalOpen && <Modal closeModal={closeModal} />}
     </div>
   );
 }
@@ -850,3 +926,7 @@ function getPriceByProductName(productName: string): number {
   }
   return 0;
 }
+
+
+
+
