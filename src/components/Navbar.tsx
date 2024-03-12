@@ -47,6 +47,9 @@ export default async function Navbar() {
           src="/securenest_bg.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
+        <a className="hidden md:block" href="/">
+          <Button variant={"ghost"}>Home</Button>
+        </a>
         <a className="hidden md:block" href="/plans">
           <Button variant={"ghost"}>Plans</Button>
         </a>

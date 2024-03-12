@@ -128,7 +128,7 @@ const Plans: React.FC = () => {
               <Loader/>
             )}
 
-            <div className="text-center text-sm text-gray-500 sm:text-base">Need help deciding? <a href="#" className="text-gray-500 underline transition duration-100 hover:text-green-500 active:text-green-600">Get in touch</a>.</div>
+            <div className="text-center text-sm text-gray-500 sm:text-base">Need help deciding? <a href="tel:6477767705" className="text-gray-500 underline transition duration-100 hover:text-green-500 active:text-green-600">Get in touch</a>.</div>
         </div>
     </div>
   );

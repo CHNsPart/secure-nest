@@ -104,6 +104,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import Stripe from "stripe";
 import { IoMdCloseCircle } from "react-icons/io";
 import { FaStar } from "react-icons/fa";
+import { PiStarFourFill } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
 
 
@@ -745,7 +746,7 @@ export default function Page() {
           </p>
           <span className="w-full flex justify-between py-2.5">
             <span className="italic text-gray-500">Want to add a number?</span> 
-            <input type="checkbox" checked={landLine} onChange={() => setLandLine(!landLine)} />
+            <input type="checkbox" className="accent-green-400 rounded-full" checked={landLine} onChange={() => setLandLine(!landLine)} />
           </span>
           <Button className="w-full bg-green-500 hover:bg-green-600" onClick={closeModal}>Continue</Button>
         </div>
@@ -774,7 +775,7 @@ export default function Page() {
 
   return (
     <div className="container min-h-screen w-full py-12">
-      <p className="text-4xl">{plan.toUpperCase()}</p>
+      <p className="text-4xl flex gap-2"><PiStarFourFill className="text-green-500" />{plan.toUpperCase()}</p>
       <div className="bg-gray-100 rounded-lg p-10 mt-5">
         {selectedPriceData && (
           <div className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between">
