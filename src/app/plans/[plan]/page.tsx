@@ -100,13 +100,12 @@ import React, { useEffect, useState } from "react";
 import { useCookies } from "next-client-cookies";
 
 import { CheckoutSubscriptionBody } from "@/app/checkout-sessions/route";
-import { loadStripe } from "@stripe/stripe-js";
-import Stripe from "stripe";
-import { IoMdCloseCircle } from "react-icons/io";
-import { FaStar } from "react-icons/fa";
-import { PiStarFourFill } from "react-icons/pi";
 import { Button } from "@/components/ui/button";
-
+import { loadStripe } from "@stripe/stripe-js";
+import { FaStar } from "react-icons/fa";
+import { IoMdCloseCircle } from "react-icons/io";
+import { PiStarFourFill } from "react-icons/pi";
+import Stripe from "stripe";
 
 export default function Page() {
   const { plan }: any | string = useParams();
@@ -116,6 +115,7 @@ export default function Page() {
   const [initialQuantity, setInitialQuantity] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [landLine, setLandLine] = useState(false);
+  const [landlinePhoneNumber, setLandlinePhoneNumber] = useState(false);
 
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
@@ -131,6 +131,10 @@ export default function Page() {
 
   const handleCheckboxChange = () => {
     setInstallCost(!installCost);
+  };
+
+  const handleLandlineCheckboxChange = () => {
+    setLandlinePhoneNumber(!landlinePhoneNumber);
   };
 
   useEffect(() => {
@@ -190,6 +194,68 @@ export default function Page() {
       );
     }
   }, [installCost]);
+
+  const addLandline = () => {
+    setLandLine(!landLine);
+  };
+
+  useEffect(() => {
+    if (landLine) {
+      setProductQuantities((prevQuantities: any) =>
+        [
+          ...prevQuantities,
+          {
+            price_data: {
+              currency: "cad",
+              unit_amount: 9.99 * 100,
+              product_data: {
+                name: landlinePhoneNumber
+                  ? `Landline Telephone Line With A Number`
+                  : `Landline Telephone Line Without A Number`,
+                description: `Landline Telephone Line subscription for $9.99/month`,
+              },
+            },
+            quantity: 1,
+          },
+        ].filter((obj: any, index) => {
+          return (
+            index ===
+            [
+              ...prevQuantities,
+              {
+                price_data: {
+                  currency: "cad",
+                  unit_amount: 9.99 * 100,
+                  product_data: {
+                    name: landlinePhoneNumber
+                      ? `Landline Telephone Line With A Number`
+                      : `Landline Telephone Line Without A Number`,
+                    description: `Landline Telephone Line subscription for $9.99/month`,
+                  },
+                },
+                quantity: 1,
+              },
+            ].findIndex(
+              (itm: any) =>
+                obj?.price_data?.product_data?.name ===
+                itm?.price_data?.product_data?.name
+            )
+          );
+        })
+      );
+    } else {
+      // console.log("deleted");
+      //remove installation cost from array
+      setProductQuantities((prevQuantity: any) =>
+        prevQuantity.filter(function (obj: any) {
+          return (
+            obj?.price_data?.product_data?.name.slice(0, 23) !==
+            `Landline Telephone Line`
+          );
+        })
+      );
+    }
+  }, [landLine, landlinePhoneNumber]);
 
   const handleQuantityChange = (
     productName: string,
@@ -712,18 +778,23 @@ export default function Page() {
     }
   };
 
-
-  const Modal = ({ closeModal }:any) => {
+  const Modal = ({ closeModal }: any) => {
     return (
       <div className="absolute flex justify-center items-center top-0 left-0 w-full min-h-full bg-black/50">
         <div className="z-50 p-10 rounded-xl bg-white">
-          <span className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500" onClick={closeModal}>
-           <span className="text-lg font-semibold text-green-500">Add a Landline</span>  <IoMdCloseCircle size={25}/>
+          <span
+            className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500"
+            onClick={closeModal}
+          >
+            <span className="text-lg font-semibold text-green-500">
+              Add a Landline
+            </span>{" "}
+            <IoMdCloseCircle size={25} />
           </span>
           <p className="p-2.5 border rounded-xl border-green-500">
-            
             <span className="flex gap-2">
-              <FaStar className="text-green-500" /> Free Canada Calling (Provinces)
+              <FaStar className="text-green-500" /> Free Canada Calling
+              (Provinces)
             </span>
             <span className="flex gap-2">
               <FaStar className="text-green-500" /> Keep Existing Number
@@ -734,9 +805,9 @@ export default function Page() {
             <span className="flex gap-2">
               <FaStar className="text-green-500" /> Voicemail
             </span>
-           <span className="flex gap-2">
+            <span className="flex gap-2">
               <FaStar className="text-green-500" /> Call Forward
-            </span> 
+            </span>
             <span className="flex gap-2">
               <FaStar className="text-green-500" /> 3-Way Calling
             </span>
@@ -745,10 +816,27 @@ export default function Page() {
             </span>
           </p>
           <span className="w-full flex justify-between py-2.5">
-            <span className="italic text-gray-500">Want to add a number?</span> 
-            <input type="checkbox" className="accent-green-400 rounded-full" checked={landLine} onChange={() => setLandLine(!landLine)} />
+            <span className="italic text-gray-500">Want to add a number?</span>
+            <input
+              type="checkbox"
+              className="accent-green-400 rounded-full"
+              checked={landlinePhoneNumber}
+              onChange={handleLandlineCheckboxChange}
+            />
           </span>
-          <Button className="w-full bg-green-500 hover:bg-green-600" onClick={closeModal}>Continue</Button>
+          <Button
+            className={
+              landLine
+                ? "w-full bg-red-500 hover:bg-red-600"
+                : "w-full bg-green-500 hover:bg-green-600"
+            }
+            onClick={() => {
+              closeModal();
+              addLandline();
+            }}
+          >
+            {landLine ? `Remove` : `Continue`}
+          </Button>
         </div>
       </div>
     );
@@ -775,7 +863,10 @@ export default function Page() {
 
   return (
     <div className="container min-h-screen w-full py-12">
-      <p className="text-4xl flex gap-2"><PiStarFourFill className="text-green-500" />{plan.toUpperCase()}</p>
+      <p className="text-4xl flex gap-2">
+        <PiStarFourFill className="text-green-500" />
+        {plan.toUpperCase()}
+      </p>
       <div className="bg-gray-100 rounded-lg p-10 mt-5">
         {selectedPriceData && (
           <div className="flex flex-col gap-2 md:gap-0 md:flex-row justify-between">
@@ -837,7 +928,7 @@ export default function Page() {
             return (
               <div
                 key={index}
-                onClick={()=>prodDetails(title)}
+                onClick={() => prodDetails(title)}
                 className="border hover:border-green-500 w-full md:max-w-56 p-2 rounded-xl"
               >
                 <Image
@@ -860,11 +951,11 @@ export default function Page() {
                     </span>
                   </div>
                   <div>
-                    { title==="Landline Telephone Line" ?
+                    {title === "Landline Telephone Line" ? (
                       <div className="bg-green-500 hover:bg-green-600 p-2 rounded-xl text-white cursor-pointer">
-                        ADD +
+                        {landLine ? `ADDED` : `ADD +`}
                       </div>
-                      :
+                    ) : (
                       <input
                         type="number"
                         className="max-w-16 h-10 border rounded-md text-center"
@@ -873,7 +964,7 @@ export default function Page() {
                         min={0}
                         onChange={(e) => handleQuantityChange(title, price, e)}
                       />
-                    }
+                    )}
                   </div>
                 </div>
               </div>
@@ -927,7 +1018,3 @@ function getPriceByProductName(productName: string): number {
   }
   return 0;
 }
-
-
-
-
