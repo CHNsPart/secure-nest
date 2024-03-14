@@ -66,6 +66,7 @@ export const priceData= [
       "features": {
         "description": "For Outer City Desntinations",
         "items": [
+          "Self Monitoring - From Smartphone",
           "Cell Phone Signal Booster 5G",
           "WiFi-Smart Camera",
           "2✕ Door and Window Alarm",
@@ -109,7 +110,7 @@ const Plans: React.FC = () => {
         <div className="mx-auto max-w-screen-xl px-4 md:px-8">
             <h2 className="mb-4 text-center text-2xl font-bold text-gray-800 md:mb-12 lg:text-3xl xl:mb-12">Our Plans for You</h2>
             {!loading ? (
-              <div className="mb-6 grid gap-6 sm:grid-cols-2 md:mb-8 lg:grid-cols-4 lg:gap-8">
+              <div className="mb-6 grid gap-6 grid-cols-1 sm:grid-cols-2 md:mb-8 lg:grid-cols-4 lg:gap-8">
                 {data.map((plan: { planName: string; features: { description: string; items: string[]; }; price: string; buttonText: string; buttonColor: string; borderColor: string | undefined; popular: boolean | undefined; link: string; }, index: React.Key | null | undefined) => (
                     <Plan
                         key={index}

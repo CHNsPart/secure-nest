@@ -28,7 +28,7 @@ export default function Home() {
               <RegisterLink>
                 <Button className="text-white bg-green-600 border-0 py-2 px-6 focus:outline-none hover:bg-green-700 rounded">Register</Button>
               </RegisterLink>
-              <a href="#plans">
+              <a href="/plans">
                 <Button className="ml-4 text-gray-700 bg-gray-100 border-0 py-2 px-6 focus:outline-none hover:bg-gray-200 rounded">Plans</Button>
               </a>
             </div>

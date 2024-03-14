@@ -91,7 +91,7 @@
 // src/app/plans/[plan]/page.tsx
 "use client";
 
-import { priceData } from "@/components/Plans";
+import Plans, { priceData } from "@/components/Plans";
 import { Product, products } from "@/config/products";
 import Image from "next/image";
 import { useParams, useRouter } from "next/navigation";
@@ -106,6 +106,7 @@ import { FaStar } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { PiStarFourFill } from "react-icons/pi";
 import Stripe from "stripe";
+import YourIcon from "@/config/Icons";
 
 export default function Page() {
   const { plan }: any | string = useParams();
@@ -780,8 +781,8 @@ export default function Page() {
 
   const Modal = ({ closeModal }: any) => {
     return (
-      <div className="absolute flex justify-center items-center top-0 left-0 w-full min-h-full bg-black/50">
-        <div className="z-50 p-10 rounded-xl bg-white">
+      <div className="fixed top-0 left-0 w-full h-full z-50 overflow-hidden flex justify-center items-center bg-black/50">
+        <div className="z-50 p-10 rounded-xl  max-w-md w-full bg-white">
           <span
             className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500"
             onClick={closeModal}
@@ -842,6 +843,31 @@ export default function Page() {
     );
   };
 
+  // const Modal = ({ closeModal }: any) => {
+  //   return (
+  //     <div className="fixed top-0 left-0 w-full h-full z-50 overflow-hidden flex justify-center items-center bg-black/50">
+  //       <div className="z-50 p-10 rounded-xl bg-white">
+  //         <span className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500" onClick={closeModal}>
+  //           <span className="text-lg font-semibold text-green-500">Add a Landline</span>{" "}
+  //           <IoMdCloseCircle size={25} />
+  //         </span>
+  //         <p className="p-2.5 border rounded-xl border-green-500">
+  //           {/* Modal content */}
+  //         </p>
+  //         <span className="w-full flex justify-between py-2.5">
+  //           <span className="italic text-gray-500">Want to add a number?</span>
+  //           {/* Checkbox input */}
+  //         </span>
+  //         {/* Button for actions */}
+  //         <Button className={landLine ? "w-full bg-red-500 hover:bg-red-600" : "w-full bg-green-500 hover:bg-green-600"}>
+  //           {landLine ? `Remove` : `Continue`}
+  //         </Button>
+  //       </div>
+  //     </div>
+  //   );
+  // };
+  
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = () => {
@@ -860,6 +886,13 @@ export default function Page() {
       return;
     }
   };
+
+  function toTitleCase(str: string) {
+    return str.toLowerCase().split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  }
+  
+
+  const categories = ['home automation', 'security camera', 'security sensors', 'hazard detection'];
 
   return (
     <div className="container min-h-screen w-full py-12">
@@ -912,7 +945,7 @@ export default function Page() {
       </h3>
 
       {/* Product cards start */}
-      <div className="flex justify-start flex-wrap gap-2 w-full">
+      {/* <div className="flex justify-start flex-wrap gap-2 w-full">
         {products.map((product: Product, index: number) => {
           const { title, image, basic, silver, gold, offcity } = product;
           const price = getPriceByPlan(plan, basic, silver, gold, offcity);
@@ -972,9 +1005,84 @@ export default function Page() {
           }
           return null;
         })}
+      </div> */}
+
+      <div>
+        {categories.map(category => (
+          <div key={category}>
+            <h2 className="text-xl flex items-center gap-2 font-bold mb-4 bg-green-50 text-green-950 py-2.5 px-2 my-2.5 rounded-lg w-full">
+              {
+                category === "security camera" && <YourIcon className="text-green-950" variant="camera" /> ||
+                category === "security sensors" && <YourIcon className="text-green-950" variant="motion" /> ||
+                category === "hazard detection" && <YourIcon className="text-green-950" variant="alarm" /> ||
+                category === "home automation" && <YourIcon className="text-green-950" variant="smartphone" />
+              }
+              {toTitleCase(category)}
+            </h2>
+            <div className="flex justify-start flex-wrap gap-2 w-full">
+              {products.filter(product => product.category === category).map((product, index) => {
+                const { title, image, basic, silver, gold, offcity } = product;
+                const price = getPriceByPlan(plan, basic, silver, gold, offcity);
+
+                // Render card only if the price is not null
+                if (price !== null) {
+                  const productNameLowercase = title.toLowerCase();
+
+                  return (
+                    <div
+                      key={index}
+                      onClick={() => prodDetails(title)}
+                      className="border hover:border-green-500 w-full md:max-w-56 p-2 rounded-xl"
+                    >
+                      <Image
+                        width={200}
+                        height={200}
+                        src={image}
+                        alt={title}
+                        className="rounded-lg object-contain h-28 w-auto mb-2"
+                      />
+                      <div className="flex justify-between gap-2">
+                        <div className="flex flex-col justify-between">
+                          <span className="text-wrap max-w-28">{title}</span>
+                          <span className="text-wrap">
+                            {typeof price === "number"
+                              ? `$${price}CAD/`
+                              : `${price.toLocaleUpperCase()} `}
+                            <span className="text-sm font-semibold text-green-600">
+                              {typeof price === "number" ? "Month" : "add extra?"}
+                            </span>
+                          </span>
+                        </div>
+                        <div>
+                          {title === "Landline Telephone Line" ? (
+                            <div className="bg-green-500 hover:bg-green-600 p-2 rounded-xl text-white cursor-pointer">
+                              {landLine ? `ADDED` : `ADD +`}
+                            </div>
+                          ) : (
+                            <input
+                              type="number"
+                              className="max-w-16 h-10 border rounded-md text-center"
+                              defaultValue={0}
+                              min={0}
+                              onChange={(e) => handleQuantityChange(title, price, e)}
+                            />
+                          )}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                }
+                return null;
+              })}
+            </div>
+          </div>
+        ))}
       </div>
       {/* Product cards end */}
       {isModalOpen && <Modal closeModal={closeModal} />}
+      <div className="flex justify-center items-center w-full my-12">
+        <Plans/>
+      </div>
     </div>
   );
 }
@@ -1018,3 +1126,5 @@ function getPriceByProductName(productName: string): number {
   }
   return 0;
 }
+
+

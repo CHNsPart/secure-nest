@@ -17,6 +17,7 @@ export interface Product {
     title: string;
     image: StaticImageData;
     description?: string,
+    category: string,
     basic: {
       price: number | string | null;
       link: string | null;
@@ -48,8 +49,9 @@ export const products: Product[] = [
         3-Way Calling
         Fair Usage Policy
       `,
+      category: "home automation",
       basic: {
-          price: null,
+          price: 9.99,
           link: null
       },
       silver: {
@@ -71,6 +73,7 @@ export const products: Product[] = [
     description: `
     Designed to provide you with a better cell signal, ideal if you live outside the city, have a cottage or getaway, or experience weak signals in the basement.Compatible With All Canadian Carriers. Boosts Voice, Text and Data Signals The Same Time. Automatic Adjust System Gain And Power Level To Get The Best Communication Result. No Manual Intervention is Needed.
     `,
+    category: "home automation",
     basic: {
         price: null,
         link: null
@@ -92,6 +95,7 @@ export const products: Product[] = [
     title: "Doorlock",
     image: doorlock,
     description: `Experience the exceptional convenience of our smart door lock, offering a variety of secure access options including Fingerprint, TuYa APP, Password, IC Card, and Mechanical Key. This electronic digital door lock allows keyless entry, with the added flexibility of APP control for seamless integration into your smart home. Enjoy the peace of mind that comes with advanced security features and effortless access control.`,
+    category: "home automation",
     basic: {
         price: null,
         link: null,
@@ -119,6 +123,7 @@ export const products: Product[] = [
     Motion Detection Alert.
     
     Works with Alexa`,
+    category: "security camera",
     basic: {
         price: 6.99,
         link: "/stripelink",
@@ -140,6 +145,7 @@ export const products: Product[] = [
     title: "Door and window alarm",
     image: alarm,
     description: `This alarm system triggers a loud siren when a door or window is opened, serving as a deterrent to potential intruders and alerting residents. The set includes five 120-decibel window/door alarms with three adjustable settings (off, chime, and alarm). Ideal for securing various spaces, including homes, garages, apartments, dorm rooms, mobile homes, RVs, offices, and more.`,
+    category: "hazard detection",
     basic: {
         price: 0.99,
         link: "/stripelink",
@@ -161,6 +167,7 @@ export const products: Product[] = [
     title: "Echo shaw 5",
     image: echo,
     description: `Manage your smart home - Look in when you're away with the built-in camera. Control compatible devices like cameras, lights, and more using the interactive display, your voice, or your motion.`,
+    category: "home automation",
     basic: {
         price: 8.99,
         link: "/stripelink",
@@ -182,6 +189,7 @@ export const products: Product[] = [
     title: "Smart garage door opener",
     image: garage,
     description: `Receive real-time notifications to any garage door activity for added peace of mind. Compatibility: Works with most brands of garage door openers manufactured after 1993 that use photoelectric sensors that do not shut off. It is not intended for use with openers in which the photoelectric sensors located near the bottom of the garage door change power mode (e.g., lights on the sensors turn off after the door is closed), or any Chamberlain Group opener with a yellow learn button manufactured between 2010 and 2021, or any Linear opener`,
+    category: "home automation",
     basic: {
         price: 5.99,
         link: "/stripelink",
@@ -203,6 +211,7 @@ export const products: Product[] = [
     title: "Glass break sensor",
     image: glass,
     description: `125dB Loud Ultra-Slim Anti-Theft Alarm for Door and Window Glass Break Vibration Sensor Alert with Adjustable Sensitivity`,
+    category: "security sensors",
     basic: {
         price: 1.75,
         link: "/stripelink",
@@ -224,6 +233,7 @@ export const products: Product[] = [
     title: "Google nest thermostat",
     image: google,
     description: `Meet the Nest Thermostat, the helpful thermostat for your comfort. It can turn itself down to save energy when you leave the house. You can control it from anywhere with the Google Home app whether you are on an errand or in bed. And it is easy to install yourself.`,
+    category: "home automation",
     basic: {
         price: null,
         link: "/stripelink",
@@ -245,6 +255,7 @@ export const products: Product[] = [
     title: "Motion sensor",
     image: motion,
     description: `Experience intelligent automation with our cutting-edge motion sensor technology. Our motion sensors are designed to effortlessly enhance your environment by detecting movement and providing seamless control of connected devices. Enjoy convenience, energy efficiency, and heightened security with our state-of-the-art motion sensor solutions. Elevate your smart living experience with responsive and adaptive technology that brings comfort and efficiency to every corner of your space.`,
+    category: "security sensors",
     basic: {
         price: 3.99,
         link: "/stripelink",
@@ -266,6 +277,7 @@ export const products: Product[] = [
     title: "Smart light bulb",
     image: light,
     description: `Spruce up your interior setting with the Nanoleaf Essentials Matter A19 60W smart LED light bulb. This Matter-enabled bulb works over Thread with a Thread Border Router and it is designed to deliver coolest to warmest whites and 16M+ vibrant colours. You can automate the light to work on specific timings and sync it with the colours from your favourite movies or games using the compatible apps.`,
+    category: "home automation",
     basic: {
         price: 0.99,
         link: "/stripelink",
@@ -289,6 +301,7 @@ export const products: Product[] = [
     description: `APP Remote Control - Easily control your home appliances at any time and any place through the Smart Life APP.
 
     Voice Control - Smart plugs that work with Alexa and Google Assistant.`,
+    category: "home automation",
     basic: {
         price: 1.99,
         link: "/stripelink",
@@ -314,6 +327,7 @@ export const products: Product[] = [
     Work with Alexa and Google Home Assistant.
     
     Scheduling: Schedule your plugs to turn on/off automatically at specified times or according to Sunrise/Sunset`,
+    category: "home automation",
     basic: {
         price: 1.99,
         link: "/stripelink",
@@ -335,6 +349,7 @@ export const products: Product[] = [
     title: "Doorbell Camera",
     image: hero3,
     description: "See who is at your door even when you are not at home. 1080P HD picture quality. Way Audio and Voice changer. PIR Motion Detection & Wide Angle View.",
+    category: "security camera",
     basic: {
         price: 6.99,
         link: "/stripelink",
