@@ -34,6 +34,20 @@ export async function POST(req: Request) {
       customer: body.customerId,
       mode: "subscription", // mode should be subscription
       line_items: body.line_items,
+      phone_number_collection: {
+        enabled: true,
+      },
+      automatic_tax: { enabled: true },
+      tax_id_collection: {
+        enabled: true,
+      },
+      customer_update: {
+        shipping: "auto",
+        name: "auto",
+      },
+      shipping_address_collection: {
+        allowed_countries: ["CA"],
+      },
       // customer_email: body.customer_email,
       success_url: success_url,
       cancel_url: `${origin}/plans/${body?.plan
