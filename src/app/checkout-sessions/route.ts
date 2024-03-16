@@ -41,10 +41,10 @@ export async function POST(req: Request) {
       tax_id_collection: {
         enabled: true,
       },
-      customer_update: {
-        shipping: "auto",
-        name: "auto",
-      },
+      // customer_update: {
+      //   shipping: "auto",
+      //   name: "auto",
+      // },
       shipping_address_collection: {
         allowed_countries: ["CA"],
       },
