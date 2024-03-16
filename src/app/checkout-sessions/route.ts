@@ -31,7 +31,8 @@ export async function POST(req: Request) {
     //customer create
     const session = await stripe.checkout.sessions.create({
       // if user is logged in, stripe will set the email in the checkout page
-      customer: body.customerId,
+      // customer: body.customerId,
+      customer: undefined,
       mode: "subscription", // mode should be subscription
       line_items: body.line_items,
       phone_number_collection: {
