@@ -29,7 +29,7 @@ const ProfilePage = ({ user }: any) => {
 
     setLoading(false);
 
-    console.log(data?.data);
+    // console.log(data?.data);
 
     // console.log(user.id);
   };
@@ -55,7 +55,7 @@ const ProfilePage = ({ user }: any) => {
                       .map((itm: any, index: number) => {
                         return (
                           <div className="flex justify-between w-full" key={index}>
-                            <p className="w-full">
+                            <div className="w-full">
                               {itm?.type === "subscription" &&
                               index === item?.lines?.data.length - 1 ? (
                                 <h6 className="mb-2 text-2xl py-5 flex items-center gap-2">
@@ -75,7 +75,7 @@ const ProfilePage = ({ user }: any) => {
                                   </div>
                                 </div>
                               )}
-                            </p>
+                            </div>
                           </div>
                         );
                       })

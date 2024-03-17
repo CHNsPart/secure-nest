@@ -116,7 +116,7 @@ export default function Page() {
   const [initialQuantity, setInitialQuantity] = useState<number>(0);
   const [loading, setLoading] = useState(false);
   const [landLine, setLandLine] = useState(false);
-  const [landlinePhoneNumber, setLandlinePhoneNumber] = useState(false);
+  const [landlinePhoneNumber, setLandlinePhoneNumber] = useState(true);
 
   // const { isAuthenticated, getUser } = getKindeServerSession();
   // const user: any = await getUser();
@@ -782,7 +782,7 @@ export default function Page() {
   const Modal = ({ closeModal }: any) => {
     return (
       <div className="fixed top-0 left-0 w-full h-full z-50 overflow-hidden flex justify-center items-center bg-black/50">
-        <div className="z-50 p-10 rounded-xl  max-w-md w-full bg-white">
+        <div className={`z-50 p-10 rounded-xl w-fit bg-white ${!landlinePhoneNumber ? "overflow-y-auto h-full md:h-fit" : ""}`}>
           <span
             className="w-full cursor-pointer text-right flex justify-between py-2 text-red-500"
             onClick={closeModal}
@@ -817,7 +817,7 @@ export default function Page() {
             </span>
           </p>
           <span className="w-full flex justify-between py-2.5">
-            <span className="italic text-gray-500">Want to add a number?</span>
+            <span className="italic text-gray-500">Want to add a new phone number?</span>
             <input
               type="checkbox"
               className="accent-green-400 rounded-full"
@@ -825,6 +825,13 @@ export default function Page() {
               onChange={handleLandlineCheckboxChange}
             />
           </span>
+            {!landlinePhoneNumber ? 
+              <div className="flex justify-center w-full">            
+                <iframe src="https://docs.google.com/forms/d/e/1FAIpQLScH6rxPWxIWf1ukDy7dFVLVQWE4eILIAghFsQ4byMyO7fz3xQ/viewform?embedded=true" width="280" height="400" frameBorder="0">Loading…</iframe> 
+              </div>
+              :
+              null
+            }
           <Button
             className={
               landLine
