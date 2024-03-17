@@ -42,6 +42,15 @@ export async function POST(req: Request) {
       tax_id_collection: {
         enabled: true,
       },
+      // subscription_data: {
+      //   billing_cycle_anchor: Math.floor(
+      //     new Date(
+      //       `${new Date().getFullYear() + 3}-${new Date()
+      //         .toISOString()
+      //         .slice(5, 10)}`
+      //     ).getTime() / 1000
+      //   ),
+      // },
       // customer_update: {
       //   shipping: "auto",
       //   name: "auto",
