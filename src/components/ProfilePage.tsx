@@ -100,7 +100,31 @@ const ProfilePage = ({ user }: any) => {
                                   <PiStarFourFill className="text-green-500" />{" "}
                                   {itm?.description.split("×")[1]} |
                                   <p>
-                                    (Expiration Date:{" "}
+                                    (Duration:{" "}
+                                    {new Date(`
+            ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
+                                      Number(item?.created) * 1000
+                                    )
+                                      .toISOString()
+                                      .slice(5, 10)}
+          `).getDate() +
+                                      "/" +
+                                      new Date(`
+          ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
+                                        Number(item?.created) * 1000
+                                      )
+                                        .toISOString()
+                                        .slice(5, 10)}
+        `).getMonth() +
+                                      "/" +
+                                      new Date(`
+            ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
+                                        Number(item?.created) * 1000
+                                      )
+                                        .toISOString()
+                                        .slice(5, 10)}
+          `).getFullYear()}{" "}
+                                    -
                                     {new Date(`
             ${
               new Date(Number(item?.created) * 1000).getFullYear() + 3
