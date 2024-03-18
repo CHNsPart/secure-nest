@@ -770,7 +770,7 @@ export default function Page() {
           </span>
           <Terms />
           {/* Button for actions */}
-          <Button onClick={() => { setTerms(true); closeTermModal(); }} className="bg-green-500 hover:bg-green-600 w-full my-2 text-white">
+          <Button onClick={() => { setTerms(true); closeTermModal(); }} className="bg-green-500 hover:bg-green-600 w-full mt-4 text-white">
             Agree
           </Button>
         </div>
