@@ -64,7 +64,7 @@ const ProfilePage = ({ user }: any) => {
 
   useEffect(() => {
     getCheckoutSessions();
-    console.log(user);
+    // console.log(user);
   }, []);
 
   useEffect(() => {
@@ -93,15 +93,17 @@ const ProfilePage = ({ user }: any) => {
                             <div className="w-full">
                               {itm?.type === "subscription" &&
                               index === item?.lines?.data.length - 1 ? (
-                                <h6 className="mb-2 text-2xl py-5 flex items-center gap-2">
+                                <h6 className="mb-2 text-2xl py-5 flex flex-col md:flex-row items-center gap-4">
                                   <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
                                     Plan
                                   </span>{" "}
                                   <PiStarFourFill className="text-green-500" />{" "}
-                                  {itm?.description.split("×")[1]} |
-                                  <p>
-                                    (Duration:{" "}
-                                    {new Date(`
+                                  {itm?.description.split("×")[1]}
+                                    <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
+                                      Duration
+                                    </span>{" "}
+                                    <p>
+                                    ({new Date(`
             ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
                                       Number(item?.created) * 1000
                                     )
@@ -170,7 +172,7 @@ const ProfilePage = ({ user }: any) => {
                         );
                       })
                       .reverse()}
-                    <div className="mt-3 py-5 flex justify-end">
+                    <div className="mt-3 py-5 flex justify-center md:justify-end">
                       <Link href={item?.invoice_pdf}>
                         <Button
                           size={"lg"}
