@@ -23,7 +23,7 @@ export default async function Navbar() {
   const { isAuthenticated, getUser } = getKindeServerSession();
   const user: any = await getUser();
   const auth: boolean = await isAuthenticated();
-  // console.log(user)
+  console.log(user)
 
   if (auth) {
     // Insert the user into the local database
