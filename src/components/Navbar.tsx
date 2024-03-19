@@ -47,16 +47,16 @@ export default async function Navbar() {
           src="/securenest_bg.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
-        <a className="hidden md:block" href="/">
+        <a className="hidden cursor-pointer md:block" href="/">
           <Button variant={"ghost"}>Home</Button>
         </a>
-        <a className="hidden md:block" href="/plans">
+        <a className="hidden cursor-pointer md:block" href="/plans">
           <Button variant={"ghost"}>Plans</Button>
         </a>
-        <a className="hidden md:block" href="/products">
+        <a className="hidden cursor-pointer md:block" href="/products">
           <Button variant={"ghost"}>Products</Button>
         </a>
-        <a className="hidden md:block" href="/about">
+        <a className="hidden cursor-pointer md:block" href="/about">
           <Button variant={"ghost"}>About</Button>
         </a>
         {auth ? (

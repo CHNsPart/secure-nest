@@ -16,7 +16,7 @@ export default function ProfileInfo({ user }: any) {
 
     setSessionList(
       data?.data.filter((data: any) => {
-        return data?.customer_email === user?.email;
+        return data?.customer_email === user?.email || data?.customer_phone === user?.phone
       })
     );
 
