@@ -14,6 +14,7 @@ import { loadStripe } from "@stripe/stripe-js";
 import { FaStar } from "react-icons/fa";
 import { IoMdCloseCircle } from "react-icons/io";
 import { PiStarFourFill } from "react-icons/pi";
+import { LuDownload } from "react-icons/lu";
 import Stripe from "stripe";
 import YourIcon from "@/config/Icons";
 import Terms from "@/components/Terms";
@@ -688,6 +689,22 @@ export default function Page() {
     }
   };
 
+  const handleDownloadClick = () => {
+    // Create an anchor element
+    const downloadAnchor = document.createElement('a');
+    downloadAnchor.href = '/securenest_Phone_port_form.DOC'; // Replace with the actual path to your DOC file
+    downloadAnchor.download = '/securenest_Phone_port_form.DOC'; // Optional: specify the filename
+
+    // Append the anchor element to the body
+    document.body.appendChild(downloadAnchor);
+
+    // Trigger a click event on the anchor element
+    downloadAnchor.click();
+
+    // Remove the anchor element from the body
+    document.body.removeChild(downloadAnchor);
+  };
+
 
   const Modal = ({ closeModal }: any) => {
     return (
@@ -742,6 +759,12 @@ export default function Page() {
               :
               null
             }
+          <div className="flex w-full justify-between gap-2 items-center border border-green-500 border-dashed p-2 rounded-xl my-2.5">
+            <span className="flex flex-col text-wrap">Please download this form and email us at <i className="text-green-600">hazim.habieh@outlook.com</i></span>
+            <Button onClick={handleDownloadClick} size={"icon"} className="bg-green-700 hover:bg-green-500 rounded-full">
+              <LuDownload size={20} /> 
+            </Button>
+          </div>
           <Button
             className={
               landLine
