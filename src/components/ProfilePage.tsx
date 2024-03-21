@@ -36,7 +36,7 @@ const ProfilePage = ({ user }: any) => {
   };
 
   const updateSub = async () => {
-    for (let i = 0; i < sessionList.length; i++) {
+    for (let i = 0; i < sessionList?.length; i++) {
       const body: UpdateSubscriptionBody = {
         subscription_id: sessionList[i]?.subscription,
         cancel_at: Math.floor(
@@ -92,18 +92,19 @@ const ProfilePage = ({ user }: any) => {
                           >
                             <div className="w-full">
                               {itm?.type === "subscription" &&
-                              index === item?.lines?.data.length - 1 ? (
+                              index === item?.lines?.data?.length - 1 ? (
                                 <h6 className="mb-2 text-2xl py-5 flex flex-col md:flex-row items-center gap-4">
                                   <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
                                     Plan
                                   </span>{" "}
                                   <PiStarFourFill className="text-green-500" />{" "}
-                                  {itm?.description.split("×")[1]}
-                                    <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
-                                      Duration
-                                    </span>{" "}
-                                    <p>
-                                    ({new Date(`
+                                  {itm?.description?.split("×")[1]}
+                                  <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
+                                    Duration
+                                  </span>{" "}
+                                  <p>
+                                    (
+                                    {new Date(`
             ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
                                       Number(item?.created) * 1000
                                     )

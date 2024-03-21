@@ -1,4 +1,5 @@
 import ProfileInfo from "@/components/ProfileInfo";
+import ProfilePage from "@/components/ProfilePage";
 import { cookies } from "next/headers";
 
 export default function page() {
@@ -10,7 +11,7 @@ export default function page() {
   return (
     <div className="container min-h-screen w-full py-12">
       <ProfileInfo user={user} />
-      {/* <ProfilePage user={user} /> */}
+      <ProfilePage user={user} />
     </div>
   );
 }
