@@ -16,14 +16,47 @@ const ProfilePage = ({ user }: any) => {
 
   //   const user: any = JSON.parse(cookies.get("user"));
 
+  const getSubscriptionSingle = async (subscriptionId: string) => {
+    const subResult = await fetch(`/api/getSubscription/${subscriptionId}`);
+
+    const subData = await subResult.json();
+
+    console.log(subData);
+
+    return subData?.status;
+  };
+
   const getCheckoutSessions = async () => {
     setLoading(true);
     const result = await fetch("/api/getSessionCheckouts");
 
     const data = await result.json();
 
+    // const subResult = await fetch(
+    //   `/api/getSubscription/sub_1OmXVdKIvM35MM71ndJ1JI1A`
+    // );
+
+    // const subData = await subResult.json();
+
+    let mainInvoiceData = [];
+
+    for (let i = 0; i < data?.data?.length; i++) {
+      const subResult = await fetch(
+        `/api/getSubscription/${data?.data[i]?.subscription}`
+      );
+
+      const subData = await subResult.json();
+
+      if (subData?.status === "active") {
+        mainInvoiceData.push(data?.data[i]);
+      }
+      // if (data?.data[i]?.customer_email === user?.email) {
+      //   setSessionList((prev: any) => [...prev, data?.data[i]]);
+      // }
+    }
+
     setSessionList(
-      data?.data.filter((data: any) => {
+      mainInvoiceData?.filter((data: any) => {
         return data?.customer_email === user?.email;
       })
     );
@@ -31,6 +64,7 @@ const ProfilePage = ({ user }: any) => {
     setLoading(false);
 
     // console.log(data?.data);
+    // console.log(subData);
 
     // console.log(user.id);
   };
@@ -69,6 +103,7 @@ const ProfilePage = ({ user }: any) => {
 
   useEffect(() => {
     updateSub();
+    console.log({ sessionList });
   }, [sessionList]);
 
   return (
@@ -112,13 +147,14 @@ const ProfilePage = ({ user }: any) => {
                                       .slice(5, 10)}
           `).getDate() +
                                       "/" +
-                                      new Date(`
+                                      (new Date(`
           ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
                                         Number(item?.created) * 1000
                                       )
                                         .toISOString()
                                         .slice(5, 10)}
         `).getMonth() +
+                                        1) +
                                       "/" +
                                       new Date(`
             ${new Date(Number(item?.created) * 1000).getFullYear()}-${new Date(
@@ -136,11 +172,12 @@ const ProfilePage = ({ user }: any) => {
                                       .slice(5, 10)}
           `).getDate() +
                                       "/" +
-                                      new Date(`
+                                      (new Date(`
           ${
             new Date(Number(item?.created) * 1000).getFullYear() + 3
           }-${new Date(Number(item?.created) * 1000).toISOString().slice(5, 10)}
         `).getMonth() +
+                                        1) +
                                       "/" +
                                       new Date(`
             ${
@@ -183,6 +220,7 @@ const ProfilePage = ({ user }: any) => {
                         </Button>
                       </Link>
                     </div>
+                    {/* <p>{statusOfSub}</p> */}
                   </>
                 </div>
               );
