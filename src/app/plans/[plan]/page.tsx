@@ -760,7 +760,7 @@ export default function Page() {
               null
             }
           <div className="flex w-full justify-between gap-2 items-center border border-green-500 border-dashed p-2 rounded-xl my-2.5">
-            <span className="flex flex-col text-wrap">Please download this form and email us at <i className="text-green-600">hazim.habieh@outlook.com</i></span>
+            <span className="flex flex-col text-wrap">Please download this form and email us at <i className="text-green-600">support@securenest.ca</i></span>
             <Button onClick={handleDownloadClick} size={"icon"} className="bg-green-700 hover:bg-green-500 rounded-full">
               <LuDownload size={20} /> 
             </Button>

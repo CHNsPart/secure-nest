@@ -28,7 +28,7 @@ const Plan: React.FC<PlanProps> = ({ planName, features, price, buttonText, butt
         </div>
       }
         <div className="mb-2 text-center text-2xl font-bold text-gray-800">{planName}</div>
-
+        <p className="mx-auto w-fit mb-2 px-5 py-2 rounded-full font-bold text-center bg-green-50 text-xs text-green-600">3 YEARS PLAN</p>
         <p className="mx-auto mb-8 px-8 text-center text-gray-500">{features.description}</p>
 
         <div className="space-y-2">
