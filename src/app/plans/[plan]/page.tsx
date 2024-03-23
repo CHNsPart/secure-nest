@@ -262,8 +262,8 @@ export default function Page() {
     }
   };
 
-  console.log(installCost);
-  console.log(productQuantities);
+  // console.log(installCost);
+  // console.log(productQuantities);
 
   let planInfo: any = {};
 
@@ -631,7 +631,7 @@ export default function Page() {
 
       const getUserInfo = await getUser.json();
 
-      console.log(getUserInfo);
+      // console.log(getUserInfo);
 
       // step 1: load stripe
       const STRIPE_PK = process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!;

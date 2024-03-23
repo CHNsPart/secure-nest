@@ -17,7 +17,7 @@ export interface CheckoutSubscriptionBody {
 export async function POST(req: Request) {
   const body = (await req.json()) as CheckoutSubscriptionBody;
   const origin = req.headers.get("origin") || "http://localhost:3000";
-  const trialEndDate = Math.floor(Date.now() / 1000) + 3 * 24 * 60 * 60;
+  // const trialEndDate = Math.floor(Date.now() / 1000) + 3 * 24 * 60 * 60;
 
   // if user is logged in, redirect to thank you page, otherwise redirect to signup page.
   const success_url = !body.customerId
@@ -43,9 +43,9 @@ export async function POST(req: Request) {
       tax_id_collection: {
         enabled: true,
       },
-      subscription_data: {
-        trial_end: trialEndDate,
-      },
+      // subscription_data: {
+      //   trial_end: trialEndDate,
+      // },
       // subscription_data: {
       //   billing_cycle_anchor: Math.floor(
       //     new Date(
@@ -63,7 +63,7 @@ export async function POST(req: Request) {
         allowed_countries: ["CA"],
       },
       // customer_email: body.customer_email,
-      success_url: success_url,
+      success_url: "https://securenest.ca/success",
       cancel_url: `${origin}/plans/${body?.plan
         ?.toLowerCase()
         ?.replaceAll("-", "")}`,

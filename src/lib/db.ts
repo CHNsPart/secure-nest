@@ -47,9 +47,9 @@ export async function insertUser(
     if (existingUser) {
       // If the user already exists, you might want to update their information
       // For now, we'll log a message, but you can customize this behavior
-      console.log(
-        `User with email ${user.email} already exists. Updating user information.`
-      );
+      // console.log(
+      //   `User with email ${user.email} already exists. Updating user information.`
+      // );
 
       // Example: Update the existing user's information
       await prisma.user.update({
@@ -69,7 +69,7 @@ export async function insertUser(
         },
       });
 
-      console.log("User added to the database:", user);
+      // console.log("User added to the database:", user);
     }
   } catch (error) {
     console.error("Error inserting/updating user into the database:", error);
