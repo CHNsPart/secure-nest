@@ -225,13 +225,48 @@ const ProfilePage = ({ user }: any) => {
                 </div>
               );
             })
-          ) : (
-            <p>No plan available</p>
-          )}
+            ) : (
+              <p>No plan available</p>
+          )} 
         </>
       )}
+
+
+
+      {/* {sessionList?.length > 0 && sessionList.map((item: any, indx: number) => (
+        <div className="p-3 mb-4 border-2 rounded-xl" key={indx}>
+          <>
+            {item?.lines?.data.map((itm: any, index: number) => {
+              if (itm?.type === "subscription" && index === item?.lines?.data?.length - 1) {
+                const subscriptionStartDate = new Date(item.created * 1000);
+                const trialPeriodEndDate = new Date(subscriptionStartDate);
+                trialPeriodEndDate.setDate(trialPeriodEndDate.getDate() + 3); // Assuming 3 days trial period
+
+                const currentDate = new Date();
+
+                if (currentDate <= trialPeriodEndDate) {
+                  return (
+                    <div key={index} className="mb-2 text-2xl py-5 flex flex-col md:flex-row items-center gap-4">
+                      <span className="font-bold text-green-800 bg-green-100 p-4 px-6 rounded-xl">
+                        Plan
+                      </span>{" "}
+                      <PiStarFourFill className="text-green-500" />{" "}
+                      {itm?.description}
+                    </div>
+                  );
+                }
+              }
+              return null;
+            })}
+          </>
+        </div>
+      ))} */}
+
+
+      
     </>
   );
 };
+
 
 export default ProfilePage;
