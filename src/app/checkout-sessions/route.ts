@@ -17,6 +17,7 @@ export interface CheckoutSubscriptionBody {
 export async function POST(req: Request) {
   const body = (await req.json()) as CheckoutSubscriptionBody;
   const origin = req.headers.get("origin") || "http://localhost:3000";
+  const trialEndDate = Math.floor(Date.now() / 1000) + 3 * 24 * 60 * 60;
 
   // if user is logged in, redirect to thank you page, otherwise redirect to signup page.
   const success_url = !body.customerId
@@ -41,6 +42,9 @@ export async function POST(req: Request) {
       automatic_tax: { enabled: true },
       tax_id_collection: {
         enabled: true,
+      },
+      subscription_data: {
+        trial_end: trialEndDate,
       },
       // subscription_data: {
       //   billing_cycle_anchor: Math.floor(
