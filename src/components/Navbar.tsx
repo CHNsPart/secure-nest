@@ -44,7 +44,7 @@ export default async function Navbar() {
           sizes="100%"
           priority
           className="w-[180px] h-auto" 
-          src="/securenest_bg.png" alt="Logo" />
+          src="/main_logo.png" alt="Logo" />
       </a>
       <div className="flex gap-2">
         <a className="hidden cursor-pointer md:block" href="/">
