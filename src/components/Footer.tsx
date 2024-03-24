@@ -14,7 +14,7 @@ export default function Footer() {
                     height="0"
                     sizes="100%"
                     className="w-[180px] h-auto"
-                    src="/securenest_bg.png" alt="Logo"
+                    src="/main_logo.png" alt="Logo"
                 />
                 <span>Your protection is Our Priority.</span>
             </a>

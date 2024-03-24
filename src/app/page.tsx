@@ -128,7 +128,7 @@ export default function Home() {
               sizes="100%"
               priority
               className="w-full object-contain h-16" 
-              src="/securenest_bg.png" alt="Logo"
+              src="/main_logo.png" alt="Logo"
             />
             <p className="w-fit">
               SecureNest is a leading local Canadian home security company serving the Greater Toronto Area (GTA) and beyond. With a commitment to innovation and personalized service, SecureNest offers state-of-the-art security technology, including smart home integration, Self-monitoring, HD video surveillance, and smart sensors. Their customized security solutions cater to the unique needs of each client, ensuring peace of mind and protection for families and homes. SecureNest is deeply invested in community engagement, actively participating in outreach programs and partnerships to make neighbourhoods safer. With SecureNest, homeowners can trust in a reliable and community-centric approach to home security.
