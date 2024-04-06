@@ -12,6 +12,7 @@ export default function Home() {
   return (
     <main className="h-full w-full flex flex-col gap-4 justify-center items-start">
 
+      <ImageSlider/>
       {/* Hero Section */}
       <section className="text-gray-600 container body-font">
         <div className="container w-full mx-auto flex px-5 py-10 md:py-24 md:flex-col flex-col items-center">
@@ -33,7 +34,7 @@ export default function Home() {
               </a>
             </div>
           </div>
-          <div className="w-1/2 flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
+          {/* <div className="w-1/2 flex flex-col md:flex-row justify-center items-center flex-auto gap-2">
             <Image 
               priority
               className="w-full md:w-1/3 h-1/3 object-cover object-center rounded"
@@ -76,7 +77,7 @@ export default function Home() {
               sizes="50vw"
               alt="hero" src="/hero5.jpeg"
             />
-          </div>
+          </div> */}
         </div>
       </section>
 
